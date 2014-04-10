@@ -1,7 +1,25 @@
 #Zza Node Mongo
-The "Zza Node Mongo" sample app is a single page application (SPA) built with Breeze, Angular, Node, and MongoDB.
+The "Zza MEAN-Breeze" sample app is a single page application (SPA) built with BreezeJS, AngularJS, Node, and MongoDB 
+> MEAN == Mongo, Express, AngularJS, and NodeJS.
+
+This application is a fork of the excellent work by Ward Bell and folks at IdeaBlade. That *upstream* version was created to demonstrate how AngularJS and BreezeJS can be used together to build complex LOB ( Line of Business ) applications. Recent upgrades to the *upstream* source added UI-Router to provide robust nested-view management and improved UX.  But many *enterprise* conventions were <u>not</u> introduced in order to keep the sample focsed upon BreezeJS integration.  This *downstream* fork enhances the architecture with:
+
+1. Use of RequireJS to provide AMD and Class depedency management. <br>See [Dependency Injection Using RequireJS and AngularJS](http://solutionoptimist.com/2013/09/30/requirejs-angularjs-dependency-injection/) for detailed explanations.
+2.  Organization of classes/packages by **feature**
+3.  Use of UpperCamelCase naming conventions
+4.  Clear separation of angular registrations from class registration
+5.  Consistent use of enhanced $log for full-workflow logging
+6.  Color-enhanced logging to easily highlight *route* logging (see above snapshot)
+
+Shown below is a snapshot of the Zza application and its **console** view:
+
+> ![zza with console logging](https://cloud.githubusercontent.com/assets/210413/2667789/18dbb27e-c0b2-11e3-92bb-054483fe1bf1.png)
+
 
 ## Prerequisites
+
+* NPM
+* Bower
 * Node.js
 * MongoDB
 
@@ -33,29 +51,16 @@ Confirm that all of them ran without error (warnings are ok). You can close this
 You only install these modules once.
 
 ### Start the servers
-*Every time you run the application* you must first launch **two** servers: the MongoDB server and the Zza application's node/express server.
+*Every time you run the application* you must first launch **two** servers: the MongoDB server and the Zza application's node/express server. If you are using WebStorm IDEA, here are two snapshots to make these tasks trivial:
 
-1. Open a new command prompt window.
+> Configure WebStorm External tool "Start MongoDb Server": <br/><br>![zza-webstorm-start_mongo](https://cloud.githubusercontent.com/assets/210413/2668242/4782bb4a-c0b7-11e3-982c-ddc688ee72a4.png)
 
-2. Navigate to the *mongodb/bin* directory.
-
-	>The default location per MongoDB installation instructions is *C:\mongodb\bin*. Your location may be different.
-
-3.	Type **mongod** to start MongoDB.
-
-	>Do not close this window. Closing the window will end the MongoDB process.
-
-4.	Open a new command prompt window.
-
-5.	Navigate to the *Zza-Node-Mongo* directory.
-
-6.	Type **node server** to start the Node.js/Express server.
-7.
-	>Do not close this window. Closing the window will end the Express process.
+> Configure **WebStorm"  custom Zza Web Server : <br/><br>
+![zza-webstorm_webserver](https://cloud.githubusercontent.com/assets/210413/2668258/5c4861b0-c0b7-11e3-92bf-4c5ae7b0ebac.png)
 
 ### Run Zza
 
-Open **localhost:3000** in a web browser to run the Zza application.
+Open **localhost:8080** in a web browser to run the Zza application.
 
 ## Release 0.7.0
 * Initial release.
