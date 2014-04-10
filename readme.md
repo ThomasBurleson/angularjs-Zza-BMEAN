@@ -1,4 +1,5 @@
-#Zza Node Mongo
+#Zza Breeze-MEAN
+
 The "Zza MEAN-Breeze" sample app is a single page application (SPA) built with BreezeJS, AngularJS, Node, and MongoDB 
 > MEAN == Mongo, Express, AngularJS, and NodeJS.
 
