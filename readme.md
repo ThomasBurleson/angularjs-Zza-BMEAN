@@ -1,6 +1,6 @@
 #Zza Breeze-MEAN
 
-The "Zza MEAN-Breeze" sample app is a single page application (SPA) built with BreezeJS, AngularJS, Node, and MongoDB 
+The "Zza Breeze-MEAN" sample app is a single page application (SPA) built with BreezeJS, AngularJS, Node, and MongoDB 
 > MEAN == Mongo, Express, AngularJS, and NodeJS.
 
 This application is a fork of the excellent work by [Ward Bell](https://github.com/wardbell) and folks at IdeaBlade: [Breeze JS Samples](https://github.com/Breeze/breeze.js.samples) . That [*upstream* version](https://github.com/Breeze/breeze.js.samples/tree/master/node/zza-node-mongo) was created to demonstrate how AngularJS and BreezeJS can be used together to *easily* build complex LOB ( Line of Business ) applications. [BreezeJS](http://www.breezejs.com/) is an amazing JavaScript ORM library responsible the persistence and loading of complex object models.
