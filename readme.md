@@ -66,8 +66,13 @@ You only install these modules once.
 
 Open **localhost:8080** in a web browser to run the Zza application.
 
-## Release 0.7.0
-* Initial release.
-* Demonstrates fundamental characteristics of a MongoDB app.
-* Maintainable w/o any Microsoft assets at all, neither code nor development tools.
-* Demonstrates more sophisticated user interaction paradigms than other Breeze samples. (It actually looks like a SPA.)
+## Release 0.8.0
+
+* UpperCamelCase class names
+* Class packaging by features
+* Use of RequireJS and define()
+* Best-practice usages of angular.module()
+* Use of HeadJS for non-blocking, script loading
+* Separation of script loading from HTML markup
+* Separation of Class registration from AngularJS instantiations.
+* Use of AngularJS UI-Router plugin for easy-to-maintain, sophisticated UX and workflows
