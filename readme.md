@@ -13,7 +13,7 @@ Recent upgrades to the *upstream* source added UI-Router to provide robust neste
 5.  Consistent use of enhanced $log for full-workflow logging
 6.  Color-enhanced logging to easily highlight *route* logging (see above snapshot)
 
-> BTW< This same features can be easily seen in other technology/platform solutions: Java, AS3, etc.
+> BTW, these same features can be easily seen in other technology/platform solutions: Java, AS3, etc.
 
 Shown below is a snapshot of the Zza application and its **console** view:
 
