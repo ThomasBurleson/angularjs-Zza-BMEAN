@@ -2,7 +2,7 @@
 The "Zza MEAN-Breeze" sample app is a single page application (SPA) built with BreezeJS, AngularJS, Node, and MongoDB 
 > MEAN == Mongo, Express, AngularJS, and NodeJS.
 
-This application is a fork of the excellent work by Ward Bell and folks at IdeaBlade. That *upstream* version was created to demonstrate how AngularJS and BreezeJS can be used together to build complex LOB ( Line of Business ) applications. Recent upgrades to the *upstream* source added UI-Router to provide robust nested-view management and improved UX.  But many *enterprise* conventions were <u>not</u> introduced in order to keep the sample focsed upon BreezeJS integration.  This *downstream* fork enhances the architecture with:
+This application is a fork of the excellent work by [Ward Bell](https://github.com/wardbell) and folks at IdeaBlade: [Breeze JS Samples](https://github.com/Breeze/breeze.js.samples) . That *upstream* version was created to demonstrate how AngularJS and BreezeJS can be used together to build complex LOB ( Line of Business ) applications. Recent upgrades to the *upstream* source added UI-Router to provide robust nested-view management and improved UX.  But many *enterprise* conventions were <u>not</u> introduced in order to keep the sample focsed upon BreezeJS integration.  This *downstream* fork enhances the architecture with:
 
 1. Use of RequireJS to provide AMD and Class depedency management. <br>See [Dependency Injection Using RequireJS and AngularJS](http://solutionoptimist.com/2013/09/30/requirejs-angularjs-dependency-injection/) for detailed explanations.
 2.  Organization of classes/packages by **feature**
