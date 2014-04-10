@@ -44,7 +44,7 @@
             if (!order) { return 0; }
             try {
                 var price = order.orderItems.reduce(function (total, item) {
-                    return total + calcItemTotalPrice(item);
+                    return total + getItemTotalPrice(item);
                 }, 0);
                 return order.itemsTotal = roundDollars(price);
             } catch (e) { }
@@ -58,9 +58,9 @@
             if (!item) { return 0; }
             try {
                 // item unit price + sum of itemOption prices
-                var price = calcItemUnitPrice(item);
+                var price = getItemUnitPrice(item);
                 price = item.orderItemOptions.reduce(function (total, opt) {
-                    return total + calcItemOptionPrice(opt);
+                    return total + getItemOptionPrice(opt);
                 }, price);
                 return item.totalPrice = roundDollars(price * item.quantity);
             } catch (e) { }
@@ -87,7 +87,7 @@
         function getItemOptionPrice(itemOption) {
             if (!itemOption) {return 0;}
             try {
-                var price = calcItemOptionUnitPrice(itemOption) * itemOption.quantity || 0;
+                var price = getItemOptionUnitPrice(itemOption) * itemOption.quantity || 0;
                 return itemOption.price = roundDollars(price);
             } catch (e) { }
             return itemOption.price = 0;

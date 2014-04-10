@@ -37,7 +37,7 @@
                     url : '/welcome',
                     views : {
                         'content@' : {
-                            templateUrl: 'src/zza/app/tmpl/welcome.html'
+                            templateUrl: 'src/zza/app/tmpl/home.html'
                         }
                     }
                 })

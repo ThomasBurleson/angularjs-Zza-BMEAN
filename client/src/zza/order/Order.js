@@ -33,7 +33,7 @@
                .controller( 'OrderItemController'   , OrderItemController   )
                .controller( 'SidebarController'     , SidebarController     )
                .factory(    'optionTypes'           , OptionTypes           )
-               .factory(    'orderItemOption'     , OrderItemOption       )
+               .factory(    'orderItemOption'       , OrderItemOption       )
                .factory(    'pricing'               , PriceCalculator       );
 
         return moduleName;
