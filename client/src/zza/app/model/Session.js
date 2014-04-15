@@ -16,7 +16,9 @@
 
         return {
 
-            user      : user,
+            isReady   : null,       // promise resolves when ORM initialized
+
+            user      : user,       // login user
 
             customer  : null,       // @see customer/model/Customer
 

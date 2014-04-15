@@ -6,6 +6,7 @@
         'mindspace/utils/logger/ExternalLogger'
 
         , 'zza/orm/EntityManager'
+        , 'zza/orm/Models'
         , 'zza/orm/Lookups'
         , 'zza/orm/Metadata'
         , 'zza/utils/Utils'
@@ -14,6 +15,7 @@
           logger
 
         , EntityManager
+        , Models
         , Lookups
         , Metadata
         , Utils
@@ -24,6 +26,7 @@
               .debug( "Registration of angular.module( `{0}` )",[moduleName]);
 
         angular.module( moduleName, [ ]                   )
+               .factory( 'models'       , Models          )
                .factory( 'lookups'      , Lookups         )
                .factory( 'metadata'     , Metadata        )
                .factory( 'orm'          , EntityManager   )

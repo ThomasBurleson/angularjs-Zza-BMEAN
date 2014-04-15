@@ -1,7 +1,7 @@
 (function( define ) {
     "use strict";
 
-    define( [ 'mindspace/utils/defineProperty' ], function(  defineProperty )
+    define( [ 'zza/utils/defineProperty' ], function(  defineProperty )
     {
         // Build a `OrderItem` class definition; without properties...
         return OrderItemClazz();
@@ -70,7 +70,7 @@
              */
             function addNewOption(productOption)
             {
-                return addOption( this.createOrderOption( productOption ) );
+                return this.addOption( this.createOrderOption( productOption ) );
             }
 
 
@@ -107,7 +107,7 @@
              */
             function getID()
             {
-                var parentOrder = this.complexAspect.parent;
+                var parentOrder = this.complexAspect ? this.complexAspect.parent : null;
                 // id == 1 + item's index
                 return parentOrder ? 1 + parentOrder.orderItems.indexOf(this) : 0;
             }

@@ -14,7 +14,7 @@
      * SidebarController provides a view model associated with the `orderSidebar.html` view
      * This view appears as a navigation panel on the left in Order and Menu views
      */
-    function SidebarController( session, util, $location, $scope  )
+    function SidebarController( session, util, $scope, $location  )
     {
         var $log = util.$log.getInstance("SidebarController");
         var vm   = this;

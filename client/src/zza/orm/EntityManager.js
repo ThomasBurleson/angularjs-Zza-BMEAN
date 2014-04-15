@@ -26,10 +26,11 @@
 
         var masterManager = null,
             serviceName   = config.serviceName,
+            store         = getMetadataStore(),
             service       = {
-                store       : metadata.fill( getMetadataStore() ),
                 breeze      : breeze,
-                getManager  : getManager,
+                store       : store,
+                manager     : getManager(),
                 loadLookups : loadLookups,
                 getNextID   : breeze.DataType.MongoObjectId.getNext
             };
@@ -68,22 +69,22 @@
             {
                 return new breeze.EntityManager({
                     serviceName     : serviceName,
-                    metadataStore   : metadataStore
+                    metadataStore   : store
                 });
             }
         }
 
+        /**
+         * Creqte Breeze MetadataStore and associate these metadata data with this Node service
+         * @returns {*}
+         */
         function getMetadataStore()
         {
-            var metadataStore = new breeze.MetadataStore();
-
-            // Associate these metadata data with this Node service
-            metadataStore.addDataService(new breeze.DataService({ serviceName: serviceName }));
+            var store = new breeze.MetadataStore();
+                store.addDataService(new breeze.DataService({ serviceName: serviceName }));
 
             // Extend model types with metadata, properties, and behavior
-            model.addToMetadataStore(metadataStore);
-
-            return metadataStore;
+            return  store ;
         }
 
         function configureBreezeForThisApp()

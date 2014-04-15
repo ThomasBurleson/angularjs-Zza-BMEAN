@@ -11,8 +11,8 @@
         , 'zza/order/controllers/OrderItemController'
         , 'zza/order/controllers/SidebarController'
 
-        , 'zza/order/model/OptionTypes'
         , 'zza/order/model/OrderItemOption'
+        , 'zza/order/model/OrderItemOptionTypes'
         , 'zza/order/model/PriceCalculator'
     ],
     function(
@@ -25,8 +25,8 @@
         , OrderItemController
         , SidebarController
 
-        , OptionTypes
         , OrderItemOption
+        , OrderItemOptionTypes
         , PriceCalculator
     ){
         var moduleName = "zza.Order";
@@ -39,8 +39,8 @@
                .controller( 'OrderItemController'   , OrderItemController   )
                .controller( 'SidebarController'     , SidebarController     )
                .factory(    'orderService'          , OrderService          )
-               .factory(    'optionTypes'           , OptionTypes           )
                .factory(    'orderItemOption'       , OrderItemOption       )
+               .factory(    'orderItemOptionTypes'  , OrderItemOptionTypes  )
                .factory(    'pricing'               , PriceCalculator       );
 
         return moduleName;

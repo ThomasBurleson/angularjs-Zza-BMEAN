@@ -3,8 +3,8 @@
 
     define( [ ], function( ) 
     {
-        // Register an annotated construction class/function
-        return [ defineProperty ];
+        // Publish isolated, utility function
+        return defineProperty;
     });
     
     // **********************************************************

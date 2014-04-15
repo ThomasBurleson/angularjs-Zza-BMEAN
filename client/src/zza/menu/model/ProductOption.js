@@ -1,7 +1,7 @@
 (function( define ) {
     "use strict";
 
-    define( [ 'mindspace/utils/defineProperty' ], function(  defineProperty )
+    define( [ 'zza/utils/defineProperty' ], function(  defineProperty )
     {
         // Build a `ProductOption` class definition; without properties...
         return ProductOptionClazz();
@@ -38,8 +38,8 @@
 
                 // Implicit accessors
 
-                defineProperty( ProductOption,"isPizzaOption", getIsPizzaOption );
-                defineProperty( ProductOption,"isSaladOption", getIsSaladOption );
+                defineProperty( ProductOption, "isPizzaOption", getIsPizzaOption );
+                defineProperty( ProductOption, "isSaladOption", getIsSaladOption );
 
             return  ProductOption;
 
@@ -50,12 +50,12 @@
 
             function getIsPizzaOption ()
             {
-                return this.productTypes.indexOf('pizza') > -1;
+                return this.productTypes ? (this.productTypes.indexOf('pizza') > -1) : false;
             }
 
             function getIsSaladOption()
             {
-                return this.productTypes.indexOf('salad') > -1
+                return this.productTypes ? (this.productTypes.indexOf('salad') > -1) : false;
             }
         }
     });

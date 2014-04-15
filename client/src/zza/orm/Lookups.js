@@ -4,7 +4,7 @@
     define([],function()
     {
         // Publish annotated Class
-        return [ 'orm', 'util', Lookups ];
+        return [ 'models', 'orm', 'util', Lookups ];
     });
 
     // **********************************************************
@@ -20,13 +20,13 @@
      *
      *  e.g. Products, ProductOptions, ProductSizes
      */
-    function Lookups( orm, util )
+    function Lookups( models, orm, util )
     {
         var $log = util.$log.getInstance( 'Lookups' );
 
         var lookups     = null,
             query       = null,
-            manager     = orm.getManager();
+            manager     = orm.manager;
 
         // Publish API with single feature!
 
@@ -56,18 +56,18 @@
         {
             return query = orm.loadLookups()
                                 .then(
-                                function () {
-                                    $log.info( "Lookups loaded from server." );
-                                    return lookups = extendService( );
-                                },
-                                function (error) {
-                                    logger.error(error.message, "lookups initialization failed");
-                                    logger.error("Alert: Is your MongoDB server running ?");
+                                    function ( data ) {
+                                        $log.info( "Lookups loaded from server." );
+                                        return lookups = extendService( data.results[0] );
+                                    },
+                                    function (error) {
+                                        logger.error(error.message, "lookups initialization failed");
+                                        logger.error("Alert: Is your MongoDB server running ?");
 
-                                    // so downstream fail handlers hear it too
-                                    throw error;
-                                }
-            );
+                                        // so downstream fail handlers hear it too
+                                        throw error;
+                                    }
+                                );
         }
 
         /**

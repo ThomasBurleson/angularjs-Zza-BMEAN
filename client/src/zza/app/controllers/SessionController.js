@@ -4,7 +4,7 @@
     define( [ ], function( )
     {
         // Register an annotated construction function
-        return [ 'session', 'lookups', 'orderService', 'util', SessionController ];
+        return [ 'session', 'productService', 'orderService', 'util', SessionController ];
     });
 
     // **********************************************************
@@ -15,7 +15,7 @@
      * Initialize the session instance with order instances and lookup data
      * @constructor
      */
-    function SessionController( session, lookups, orderService, util)
+    function SessionController( session, productService, orderService, util)
     {
         var vm  = this,
             dfd = util.$q.defer(),
@@ -38,7 +38,9 @@
         function startLoading()
         {
             $log.debug( "startLoading()" );
-            session.isReady = dfd.promise();
+            session.isReady = dfd.promise;
+
+            return util.$q.when( true );
         }
 
         /**
@@ -62,7 +64,7 @@
         {
             $log.debug( "loading Product lookups..." );
 
-            return lookups.fetchLookups()
+            return productService.loadLookups()
                           .then( function( data )
                           {
                               $log.debug( "session.lookups updated." );

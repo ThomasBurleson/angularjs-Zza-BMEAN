@@ -71,7 +71,7 @@
          */
         function addNewItem( product )
         {
-            return addItem( this.createOrderItem( product ) );
+            return this.addItem( this.createOrderItem( product ) );
         }
 
         /**

@@ -54,7 +54,7 @@
 
                 var found = filterByID( customerState.selectedCustomerId );
 
-                select( (found && found.length) ? found[0] : null );
+                selectCustomer( (found && found.length) ? found[0] : null );
             }
 
             /**
@@ -75,9 +75,9 @@
 
             }
 
-            function getCustomerOrders(customer)
+            function getCustomerOrders()
             {
-                if ( !customer ) customer = vm.selectedCustomer;
+                var customer = vm.selectedCustomer;
 
                 $log.debug( "getCustomerOrders({id})", customer );
 

@@ -1,7 +1,7 @@
 (function( define ) {
     "use strict";
 
-    define( [ 'mindspace/utils/defineProperty' ], function(  defineProperty )
+    define( [ 'zza/utils/defineProperty' ], function(  defineProperty )
     {
         // Build a `Product` class definition; without properties...
         return ProductClazz();
