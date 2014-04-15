@@ -12,7 +12,7 @@
     define([],function()
     {
         // Publish annotated Class
-        return ['breeze', 'config', 'model', EntityManager];
+        return [ 'config', 'metadata', 'breeze',  EntityManager];
     });
 
     // **********************************************************
@@ -20,16 +20,21 @@
     // **********************************************************
 
 
-    function EntityManager( breeze, config, model )
+    function EntityManager( config, metadata, breeze )
     {
         configureBreezeForThisApp();
 
         var masterManager = null,
             serviceName   = config.serviceName,
-            metadataStore = getMetadataStore(),
             service       = {
-                getManager: getManager // get the "master manager", creating if necessary
-            }
+                store       : metadata.fill( getMetadataStore() ),
+                breeze      : breeze,
+                getManager  : getManager,
+                loadLookups : loadLookups,
+                getNextID   : breeze.DataType.MongoObjectId.getNext
+            };
+
+        // Published API
 
         return service;
 
@@ -37,8 +42,26 @@
         // Private Methods
         // **********************************************************
 
+
+        /**
+         * Load all lookup items
+         * @returns {Promise}
+         */
+        function loadLookups()
+        {
+            return breeze.EntityQuery.from('Lookups')
+                                    .using( getManager() )
+                                    .execute();
+        }
+
+
+        // **********************************************************
+        // Private Methods
+        // **********************************************************
+
         // get the "master manager", creating if necessary
-        function getManager(){
+        function getManager()
+        {
             return masterManager || (masterManager = getInstance());
 
             function getInstance()
@@ -50,7 +73,8 @@
             }
         }
 
-        function getMetadataStore() {
+        function getMetadataStore()
+        {
             var metadataStore = new breeze.MetadataStore();
 
             // Associate these metadata data with this Node service
@@ -62,12 +86,14 @@
             return metadataStore;
         }
 
-        function configureBreezeForThisApp() {
+        function configureBreezeForThisApp()
+        {
             breeze.config.initializeAdapterInstance("dataService", "mongo", true);
             initBreezeAjaxAdapter(config.userSessionId);
         }
 
-        function initBreezeAjaxAdapter(userSessionId) {
+        function initBreezeAjaxAdapter(userSessionId)
+        {
             // get the current default Breeze AJAX adapter
             var ajaxAdapter = breeze.config.getAdapterInstance("ajax");
             ajaxAdapter.defaultSettings = {

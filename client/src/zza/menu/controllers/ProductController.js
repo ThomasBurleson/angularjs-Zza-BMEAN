@@ -3,38 +3,42 @@
 
     define( [], function( )
     {
-        return  [ '$state', '$stateParams', '$log', 'util', 'config', 'dataservice', MenuController ];
+        return  [ 'productService', '$state', '$stateParams', '$log', ProductController ];
 
         // **********************************************************
         // Controller Class
         // **********************************************************
 
         /**
-         * MenuController provides a view model associated with the `menu.html` view
+         * ProductController provides a view model associated with the `menu.html` view
          * and its `menu.*.html` sub-view templates
          */
-        function MenuController( $state, $stateParams, $log, util, config, dataservice )
+        function ProductController( productService, $state, $stateParams, $log )
         {
-            var vm  = this;
+            $log = $log.getInstance( "ProductController" );
 
-            $log = $log.getInstance("HeaderController");
+            var type = $stateParams.productType,
+                vm  = this;
 
-            dataservice.ready(function onInitialize()
-            {
-                var type = $stateParams.productType;
-                if (type){
-                    var types = ['drink', 'pizza', 'salad'];
-                    type = types[types.indexOf(type.toLowerCase())];
-                }
-                type = type || 'pizza';
-
-                vm.go          = go;
-                vm.template    = util.supplant( config.templates.menuURL, [ type ] );
-                vm.products    = dataservice.lookups.products.byTag( type );
+                vm.products    = [ ];
+                vm.template    = null;
                 vm.productSref = productSref;
+                vm.go          = showProductDetails;
 
-                $log.debug( "vm instantiated..." );
-            });
+            // Now async load all available products for the requested type (pizza, salad, drink)
+
+            productService.getTemplateURLFor( type )
+                          .then( function( url )
+                          {
+                              vm.template = url;
+                          });
+
+            productService.loadProductsFor( type )
+                          .then( function( products )
+                          {
+                              vm.products = products;
+                          })
+
 
             // **********************************************************
             // Private Methods
@@ -46,15 +50,16 @@
              * style the anchor tag with 'hand' for the cursor to indicate a clickable.
              * See pizza.html for an example of this approach
              */
-            function go(product) {
+            function showProductDetails(product)
+            {
                 $log.debug( "go( {0} )", [product] );
-
                 $state.go('app.order.product', {productType : product.type, productId: product.id});
             }
 
             // Generates a link that you can see in the browser
             // See drink.html for an example of this approach
-            function productSref(p) {
+            function productSref(p)
+            {
                 return "app.order.product({productType: '" + p.type + "', productId: '" + p.id +"'})";
                 //return '#/menu/'+p.type+'/'+p.id;
             }

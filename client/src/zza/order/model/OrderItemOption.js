@@ -1,55 +1,59 @@
 (function( define ) {
-    'use strict';
+    "use strict";
 
-    define([], function( )
+    define( [ 'mindspace/utils/defineProperty' ], function(  defineProperty )
     {
-        // Publish annotated Class
-        return [ 'util', 'lookups', OrderItemOption ];
-    });
-
-    // **********************************************************
-    // Class Factory
-    // **********************************************************
-
-    /**
-     * Creates viewmodels for every ProductOption available for the product
-     * of a given OrderItem.
-     *
-     * One such vm for each option type (e.g., 'pesto sauce").
-     */
-    function OrderItemOption( util, lookups )
-    {
-        return {
-            createVms: createVms
-        };
+        // Build a `OrderItemOption` class definition; without properties...
+        return OrderItemOptionClazz();
 
         // **********************************************************
-        // Private Methods
+        //  Class Builder
         // **********************************************************
 
         /**
-         * Creates an anonymous VM for each productOption for the given product
-         * The VM has an itemOption if the current OrderItem has an ItemOption for that product
+         * While BreezeJS will use the MetaData populate properties and values to each instance
+         * we need to `add` business methods (logic) to the class.
+         *
+         * @see Metadata::addOrderItemOption()
+         *
+         *    function addOrderItemOption() {
+         *        addType({
+         *            name: 'OrderItemOption',
+         *            isComplexType: true,
+         *            dataProperties: {
+         *                productOptionId: { type: LUID, null: false, default: 0 },
+         *                name:            { max: 50, null: false },
+         *                quantity:        { type: DT.Int32, null: false, default: 1 },
+         *                price:           { type: DECIMAL, null: false, default: 0 }
+         *            }
+         *        });
+         *    }
+         *
+         * @returns {OrderItemOption}
+         * @constructor
          */
-        function createVms(orderItem)
+        function OrderItemOptionClazz( )
         {
-            var productOptions = lookups.productOptions.byProduct(orderItem.product);
+            var OrderItemOption = function(){ };
 
-            var itemOptions =
-                util.keyArray(orderItem.orderItemOptions, function (o) { return o.productOptionId; });
+            return defineProperty( OrderItemOption, "productOption", getProductOption, setProductOption );
 
-            return productOptions.map(function (po) {
-                var io = itemOptions[po.id];
-                return {
-                    id: po.id,
-                    name: po.name,
-                    productOption: po,
-                    selected: !!io,
-                    itemOption: io
-                };
-            });
+            // **********************************************************
+            // Private Methods
+            // **********************************************************
+
+            function getProductOption()
+            {
+                var id = this.productOptionId;
+                return (id) ? this.productOption = getEntityById(this, 'ProductOption', id) : null;
+            }
+            function setProductOption(po)
+            {
+                this.productOptionId = po ? po.id : 0;
+                this.name = po ? po.name : '';
+            }
         }
-    }
+    });
 
 
-}( window.define));
+}( define ));

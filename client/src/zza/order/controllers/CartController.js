@@ -1,9 +1,9 @@
 ﻿(function( define ) {
     'use strict';
 
-    define( [], function( supplant )
+    define( [], function( )
     {
-        return  [ 'dataservice', 'pricing', 'util', '$log', CartController ];
+        return  [ 'session', 'pricing', 'util', CartController ];
 
         // **********************************************************
         // Controller Class
@@ -12,24 +12,21 @@
         /**
          * CartController provides a view model associated with `cart.html` view
          */
-        function CartController( dataservice, pricing, util, $log )
+        function CartController( session, pricing, util )
         {
+            var $log = util.$log.getInstance("CartController");
             var vm   = this;
-                $log = $log.getInstance("CartController");
 
-            dataservice.ready( function onInitialize()
-            {
                 vm.hasExtraCost  = false;
+                vm.cartOrder     = session.cartOrder;
+                vm.draftOrder    = session.draftOrder;
                 vm.cartItemState = cartItemState;
-                vm.cartOrder     = dataservice.cartOrder;
-                vm.draftOrder    = dataservice.draftOrder;
                 vm.updateCosts   = calculateCosts;
                 vm.removeItem    = removeItem;
 
-                calculateCosts();
+            calculateCosts();
 
-                $log.debug( "vm instantiated..." );
-            });
+            $log.debug( "vm instantiated..." );
 
             // **********************************************************
             // Private Methods

@@ -3,7 +3,7 @@
 
     define( [], function()
     {
-        return  [ '$state', '$stateParams', 'dataservice', 'optionTypes', 'util', OrderItemController ];
+        return  [ '$state', '$stateParams', 'session', 'optionTypes', 'util', OrderItemController ];
     });
 
     // **********************************************************
@@ -14,23 +14,23 @@
      * OrderItemController provides a view model associated with the `orderItem.html` view
      * and its `orderItem**.html` sub-views.
      */
-    function OrderItemController( $state, $stateParams, dataservice, optionTypes, util )
+    function OrderItemController( $state, $stateParams, session, optionTypes, util )
     {
         var vm     = this,
             $log   = util.$log.getInstance( "OrderItemController" );
 
-        dataservice.ready( function onReady()
+        session.ready( function onReady()
         {
-            var cartOrder    = dataservice.cartOrder;
-            var draftOrder   = dataservice.draftOrder;
-            var lookups      = dataservice.lookups;
+            var cartOrder    = session.cartOrder;
+            var draftOrder   = session.draftOrder;
+            var lookups      = session.lookups;
             var info         = getOrderItemInfo( );
             var isDraftOrder = false;
 
             $log.debug( "vm instantiated..." );
 
             if ( info ) {
-                isDraftOrder    = info.orderItem.order === dataservice.draftOrder;
+                isDraftOrder    = info.orderItem.order === session.draftOrder;
                 vm.addToCart    = addToCart;
                 vm.isDraftOrder = isDraftOrder;
                 vm.orderItem    = info.orderItem;

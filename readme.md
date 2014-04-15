@@ -5,7 +5,7 @@ The "Zza Breeze-MEAN" sample app is a single page application (SPA) built with B
 
 This application is a fork of the excellent work by [Ward Bell](https://github.com/wardbell) and folks at IdeaBlade: [Breeze JS Samples](https://github.com/Breeze/breeze.js.samples) . That [*upstream* version](https://github.com/Breeze/breeze.js.samples/tree/master/node/zza-node-mongo) was created to demonstrate how AngularJS and BreezeJS can be used together to *easily* build complex LOB ( Line of Business ) applications. [BreezeJS](http://www.breezejs.com/) is an amazing JavaScript ORM library responsible the persistence and loading of complex object models.
 
-Recent upgrades to the *upstream* source added UI-Router to provide robust nested-view management and improved UX.  But many *enterprise* conventions were <u>not</u> introduced in order to keep the *student* sample focused upon BreezeJS integration. This *downstream* fork enhances the code and architecture with features demanded by larger applications and team-based development:
+Recent upgrades to the *upstream* source added UI-Router to provide robust nested-view management and improved UX.  But many *enterprise* conventions were <u>not</u> introduced in order to keep the *student* sample focused upon BreezeJS integration. This *downstream* fork enhances the code and architecture with features demanded by larger applications and team-based development. These same features are ubiquitous in other technology/platform solutions: Java, AS3, etc... so why it seems obvious to use the same within AngularJS SPA architectures:
 
 1. Use of RequireJS to provide AMD and Class depedency management. <br>See [Dependency Injection Using RequireJS and AngularJS](http://solutionoptimist.com/2013/09/30/requirejs-angularjs-dependency-injection/) for detailed explanations.
 2.  Organization of classes/packages by **feature**
@@ -14,7 +14,7 @@ Recent upgrades to the *upstream* source added UI-Router to provide robust neste
 5.  Consistent use of enhanced $log for full-workflow logging
 6.  Color-enhanced logging to easily highlight *route* logging (see above snapshot)
 
-> BTW, these same features can be easily seen in other technology/platform solutions: Java, AS3, etc.
+> Considering the complexity of workflows and components within an AngularJS SPA, we cannot ignore the "unreasonable effectiveness of data"... Class and method logging delivers high quality data concerning the state and flow of an SPA. Do not underestimate the effectivenes and positive impact [on code quality] that be achieved with consistent **logging**.
 
 Shown below is a snapshot of the Zza application and its **console** view:
 

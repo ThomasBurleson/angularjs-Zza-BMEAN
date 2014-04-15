@@ -3,7 +3,7 @@
 
     define( [], function()
     {
-        return  [ '$scope', '$location', '$log', 'util', 'dataservice', SidebarController ];
+        return  [ 'session', 'util', '$scope', '$location', SidebarController ];
     });
 
     // **********************************************************
@@ -14,30 +14,26 @@
      * SidebarController provides a view model associated with the `orderSidebar.html` view
      * This view appears as a navigation panel on the left in Order and Menu views
      */
-    function SidebarController( $scope, $location, $log, util, dataservice )
+    function SidebarController( session, util, $location, $scope  )
     {
-        var vm = this;
+        var $log = util.$log.getInstance("SidebarController");
+        var vm   = this;
 
-        $log = $log.getInstance("SidebarController");
-
-        dataservice.ready( function onReady()
-        {
             vm.cartItemStateRef   = cartItemStateRef;
-            vm.cartOrder          = dataservice.cartOrder;
+            vm.cartOrder          = session.cartOrder;
             vm.draftItemStateRef  = draftItemStateRef;
-            vm.draftOrder         = dataservice.draftOrder;
+            vm.draftOrder         = session.draftOrder;
             vm.isSelected         = isSelected;
             vm.menuStates         = getMenuStates();
             vm.showRecentlyViewed = false;
             vm.showOrderSummary   = false;
 
-            $scope.$watch( activityStatus, function() {
-                vm.showRecentlyViewed = (0 < vm.draftOrder.orderItems.length);
-                vm.showOrderSummary   = (0 < vm.cartOrder.orderItems.length);
-            });
-
-            $log.debug( "vm instantiated..." );
+        $scope.$watch( activityStatus, function() {
+            vm.showRecentlyViewed = (0 < vm.draftOrder.orderItems.length);
+            vm.showOrderSummary   = (0 < vm.cartOrder.orderItems.length);
         });
+
+        $log.debug( "vm instantiated..." );
 
 
         // **********************************************************

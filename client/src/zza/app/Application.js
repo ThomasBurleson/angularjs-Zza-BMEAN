@@ -8,6 +8,9 @@
         , 'zza/app/routes/RouteLogger'
 
         , 'zza/app/model/Configuration'
+        , 'zza/app/model/Session'
+        , 'zza/app/model/User'
+
         , 'zza/app/controllers/HeaderController'
         , 'zza/app/controllers/SessionController'
     ],
@@ -18,6 +21,9 @@
         , RouteLogger
 
         , Configuration
+        , Session
+        , User
+
         , HeaderController
         , SessionController
     ){
@@ -28,6 +34,8 @@
 
         angular.module( moduleName, [ ] )
                .factory(    'config'            , Configuration     )
+               .factory(    'session'           , Session           )
+                .factory(   'user'              , User              )
                .controller( 'SessionController' , SessionController )
                .controller( 'HeaderController'  , HeaderController  )
                .config( RouteManager                                )

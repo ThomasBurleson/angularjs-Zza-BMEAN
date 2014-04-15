@@ -4,7 +4,7 @@
     define([],function()
     {
         // Publish annotated Class
-        return [ 'breeze', 'EntityManager', 'util', '$log', Lookups ];
+        return [ 'orm', 'util', Lookups ];
     });
 
     // **********************************************************
@@ -12,7 +12,7 @@
     // **********************************************************
 
     /**
-     *  Extends the dataservice with easy access to "Lookups"
+     *  Extends the ORM with easy access to "Lookups"
      *  which it fetches from the server.
      *
      *  "Lookups" are relatively-stable reference entities
@@ -20,64 +20,54 @@
      *
      *  e.g. Products, ProductOptions, ProductSizes
      */
-    function Lookups( breeze, EntityManager, util, $log )
+    function Lookups( orm, util )
     {
-        $log = $log.getInstance( 'Lookups' );
+        var $log = util.$log.getInstance( 'Lookups' );
 
-        var service,
-            isReady = null,
-            manager = EntityManager.getManager();   // get the master manager
+        var lookups     = null,
+            query       = null,
+            manager     = orm.getManager();
 
-        return service = {
-            ready        : makeReady,
-            fetchLookups : queryForLookups
-            // extended during initialization
+        // Publish API with single feature!
+
+        return {
+            fetchLookups : fetchAll
         };
 
         // **********************************************************
         // Private Methods
         // **********************************************************
 
-        function makeReady( success, fail )
-        {
-            return isReady = (isReady || initialize()).then( success,  fail );
-        }
 
-        function initialize()
-        {
-            $log.debug( "initialize()" );
-
-            if ( hasLookups() )
-            {
-                extendService(manager);
-                return util.resolved;
-
-            } else {
-
-                return queryForLookups();
-            }
-        }
-
-        function queryForLookups()
+        function fetchAll()
         {
             $log.debug( "queryForLookups()" );
 
-            return breeze.EntityQuery.from('Lookups')
-                              .using(manager)
-                              .execute()
-                              .then(
-                                  function () {
-                                      $log.info( "Lookups loaded from server." );
-                                      return extendService();
-                                  },
-                                  function (error) {
-                                      logger.error(error.message, "lookups initialization failed");
-                                      logger.error("Alert: Is your MongoDB server running ?");
+            return !lookups ? (query || queryForLookups()) : util.$q.when( lookups );
+        }
 
-                                      // so downstream fail handlers hear it too
-                                      throw error;
-                                  }
-                              );
+
+        /**
+         * Using the EntityManager to query and load the Lookup table
+         *
+         * @returns {Promise}
+         */
+        function queryForLookups()
+        {
+            return query = orm.loadLookups()
+                                .then(
+                                function () {
+                                    $log.info( "Lookups loaded from server." );
+                                    return lookups = extendService( );
+                                },
+                                function (error) {
+                                    logger.error(error.message, "lookups initialization failed");
+                                    logger.error("Alert: Is your MongoDB server running ?");
+
+                                    // so downstream fail handlers hear it too
+                                    throw error;
+                                }
+            );
         }
 
         /**
@@ -85,30 +75,30 @@
          * @param service
          * @param manager
          */
-        function extendService()
+        function extendService( lookups )
         {
             $log.debug( "extendService()" );
 
-            var s = service;
+            var l = lookups || { };
 
-            s.OrderStatus               = buildOrderStatus( manager );
+            l.OrderStatus               = buildOrderStatus( manager );
 
-            s.products                  = manager.getEntities('Product');
-            s.products.byId             = filterById(s.products);
-            s.products.byName           = filterByName(s.products);
-            s.products.byTag            = filterProductsByTag(s.products);
+            l.products                  = manager.getEntities('Product');
+            l.products.byId             = filterById(l.products);
+            l.products.byName           = filterByName(l.products);
+            l.products.byTag            = filterProductsByTag(l.products);
 
-            s.productSizes              = manager.getEntities('ProductSize');
-            s.productSizes.byId         = filterById(s.productSizes);
-            s.productSizes.byProduct    = filterSizesByProduct(s.productSizes);
+            l.productSizes              = manager.getEntities('ProductSize');
+            l.productSizes.byId         = filterById(l.productSizes);
+            l.productSizes.byProduct    = filterSizesByProduct(l.productSizes);
 
-            s.productOptions            = manager.getEntities('ProductOption');
-            s.productOptions.byId       = filterById(s.productOptions);
-            s.productOptions.byTag      = filterOptionsByTag(s.productOptions);
-            s.productOptions.byProduct  = filterOptionsByProduct(s.productOptions);
+            l.productOptions            = manager.getEntities('ProductOption');
+            l.productOptions.byId       = filterById(l.productOptions);
+            l.productOptions.byTag      = filterOptionsByTag(l.productOptions);
+            l.productOptions.byProduct  = filterOptionsByProduct(l.productOptions);
 
 
-            return service;
+            return lookups;
         }
 
         function buildOrderStatus( manager )
@@ -131,7 +121,8 @@
         }
 
         // Check if the lookup entities have already been loaded
-        function hasLookups(){
+        function hasLookups()
+        {
             // assume has lookup entities if there are OrderStatuses
             return manager.getEntities('OrderStatus').length > 0;
         }

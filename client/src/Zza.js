@@ -7,10 +7,10 @@
             , 'zza/utils/ToastrLogDecorator'
 
             , 'zza/app/Application'
-            , 'zza/menu/Menu'
+            , 'zza/customer/Customers'
+            , 'zza/menu/Products'
             , 'zza/order/Order'
-            , 'zza/customer/Customer'
-            , 'zza/services/Dataservices'
+            , 'zza/orm/ORM'
         ],
         function (
               $log
@@ -18,10 +18,10 @@
             , ToastrLogDecorator
 
             , Application
-            , Menu
+            , Customers
+            , Products
             , Order
-            , Customer
-            , Dataservices
+            , ORM
         ){
             var dependencies = [
                    , "ngSanitize"            // Vendor-defined NG modules...
@@ -29,14 +29,14 @@
                    , 'ui.router'
                    , 'ui.bootstrap'
                    , Application             // Zza-defined NG modules...
-                   , Menu
+                   , Customers
+                   , Products
                    , Order
-                   , Customer
-                   , Dataservices
+                   , ORM
                 ],
                 app,
                 appName = 'zza.Application',
-                onStartup = [ 'config', 'dataservice', initializeDataservices ];
+                onStartup = [ 'config', initializeDataservices ];
             
 
             $log = $log.getInstance( "BOOTSTRAP" );
@@ -63,16 +63,9 @@
             // Private Methods
             // **********************************************************
 
-            function initializeDataservices( config, dataservice )
+            function initializeDataservices( config )
             {
                 $log.info( "Zza SPA is loaded and running on " + config.server );
-
-                /**
-                 * Trigger initial loading of data from server
-                 * The app may appear to be more responsive if loading happens in background
-                 * while the app launches on a splash page that doesn't actually need data.
-                 */
-                dataservice.ready();
 
                 /**
                  * Configure toastr for this app to have a 2 second toast timeout

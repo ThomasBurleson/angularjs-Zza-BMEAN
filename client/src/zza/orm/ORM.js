@@ -5,21 +5,17 @@
 
         'mindspace/utils/logger/ExternalLogger'
 
-        , 'zza/services/ServiceManager'
-        , 'zza/services/EntityManager'
-        , 'zza/services/Lookups'
-        , 'zza/services/Metadata'
-        , 'zza/services/Models'
+        , 'zza/orm/EntityManager'
+        , 'zza/orm/Lookups'
+        , 'zza/orm/Metadata'
         , 'zza/utils/Utils'
 
     ], function(
           logger
 
-        , ServiceManager
         , EntityManager
         , Lookups
         , Metadata
-        , Models
         , Utils
     ){
         var moduleName = "zza.Dataservices";
@@ -28,11 +24,9 @@
               .debug( "Registration of angular.module( `{0}` )",[moduleName]);
 
         angular.module( moduleName, [ ]                   )
-               .factory( 'dataservice'  , ServiceManager  )
-               .factory( 'EntityManager', EntityManager   )
                .factory( 'lookups'      , Lookups         )
                .factory( 'metadata'     , Metadata        )
-               .factory( 'model'        , Models          )
+               .factory( 'orm'          , EntityManager   )
                .factory( 'util'         , Utils           );
 
         return moduleName;

@@ -7,6 +7,7 @@ var express        = require('express')
     , favicon      = require('static-favicon')
     , fileServer   = require('serve-static')
     , logger       = require('morgan')
+    , cors         = require('cors')
 
     , breezeRoutes = require('./zza/breeze-routes')
     , errorHandler = require('./zza/errorHandler')
@@ -19,9 +20,9 @@ var express        = require('express')
     app.use( compress()                 );
     app.use( bodyParser.json()          );
     app.use( bodyParser.urlencoded()    );
+    app.use( cors()                     );        // enable ALL CORS requests
 
-    // Configure both breeze-specific routes for REST API
-    breezeRoutes.configure( app );
+    breezeRoutes.configure( app );                // Configure both breeze-specific routes for REST API
 
     // Support static file content
     app.use( fileServer( process.cwd() ));
