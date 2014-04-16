@@ -7,7 +7,9 @@ This application is a fork of the excellent work by [Ward Bell](https://github.c
 
 ![zza_home](https://cloud.githubusercontent.com/assets/210413/2725275/88509a0e-c5ab-11e3-84e6-bd12b7d91a7b.png)
 
-Recent upgrades to the *upstream* source added UI-Router to provide robust nested-view management and improved UX.  But many *enterprise* conventions were <u>not</u> introduced in order to keep the *student* sample focused upon BreezeJS integration. This *downstream* fork enhances the code and architecture with features demanded by larger applications and team-based development. These same features are ubiquitous in other technology/platform solutions: Java, AS3, etc... so why it seems obvious to use the same within AngularJS SPA architectures:
+Recent upgrades to the *upstream* source added an improved user experience, code-cleanup, and integrated the AngularJS UI-Router plugin: to provide robust nested-view management.  
+
+But many *enterprise* conventions were <u>not</u> introduced in order to keep the *student* sample focused upon BreezeJS integration. This **downstream** fork enhances the code and architecture with features and patterns demanded by larger applications and team-based development. Those features and patterns manifest in other technology/platform solutions: Java, AS3, etc... so why it seems *obvious* to use the same within AngularJS SPA architectures:
 
 1. Use of RequireJS to provide AMD and Class depedency management. <br>See [Dependency Injection Using RequireJS and AngularJS](http://solutionoptimist.com/2013/09/30/requirejs-angularjs-dependency-injection/) for detailed explanations.
 2.  Organization of classes/packages by **feature**
