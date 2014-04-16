@@ -77,7 +77,7 @@ You only install these modules once.
 
 Open **localhost:8080** in a web browser to run the Zza application.
 
-## Release 1.0.0
+## Release 0.9.0
 
 * UpperCamelCase class names
 * Class packaging by features
