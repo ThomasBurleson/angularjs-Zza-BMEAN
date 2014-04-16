@@ -204,4 +204,4 @@
 
     });
 
-})( define );
+})( window.define );

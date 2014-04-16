@@ -37,6 +37,15 @@ tr.narrow td {
     padding-bottom: 0px;
 }
 
+.about {
+    margin-top:-20px;
+    height: 1000px;
+    padding-top: 0px;
+    background: url(/assets/images/breezeBkgrnd.png);
+    background-repeat: repeat-x;
+    background-color: #f1f1f1;
+}
+
 .tab-pane {
     min-height: 6em;
 }

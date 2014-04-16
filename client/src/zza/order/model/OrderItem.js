@@ -70,7 +70,7 @@
              */
             function addNewOption(productOption)
             {
-                return this.addOption( this.createOrderOption( productOption ) );
+                return addOption.call(this, this.createOrderOption( productOption ) );
             }
 
 
@@ -142,4 +142,4 @@
 
 
 
-}( define ));
+}( window.define ));

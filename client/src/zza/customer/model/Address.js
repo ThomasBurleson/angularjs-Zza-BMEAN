@@ -5,18 +5,19 @@
     {
         // Build a `Address` class definition; without properties...
         return AddressClazz();
+    });
 
-        // **********************************************************
-        //  Class Builder
-        // **********************************************************
+    // **********************************************************
+    //  Class Builder
+    // **********************************************************
 
-        /**
-         * While BreezeJS will use the MetaData populate properties and values to each instance
-         * we need to `add` business methods (logic) to the class.
-         *
-         * @see Metadata::addAddress()
-         *
-         *    function addAddress() {
+    /**
+     * While BreezeJS will use the MetaData populate properties and values to each instance
+     * we need to `add` business methods (logic) to the class.
+     *
+     * @see Metadata::addAddress()
+     *
+     *    function addAddress() {
          *        addType({
          *            name: 'Address',
          *            isComplexType: true,
@@ -28,22 +29,20 @@
          *            }
          *        });
          *    }
-         *
-         * @returns {Address}
-         * @constructor
-         */
-        function AddressClazz( )
-        {
-            var Address = function(){ };
+     *
+     * @returns {Address}
+     * @constructor
+     */
+    function AddressClazz( )
+    {
+        var Address = function(){ };
 
-            return Address;
+        return Address;
 
-            // **********************************************************
-            // Private Methods
-            // **********************************************************
+        // **********************************************************
+        // Private Methods
+        // **********************************************************
 
-        }
-    });
+    }
 
-
-}( define ));
+}( window.define ));

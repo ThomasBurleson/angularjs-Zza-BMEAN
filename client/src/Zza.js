@@ -1,4 +1,4 @@
-(function ( define ) {
+(function ( define, angular ) {
     "use strict";
 
     define([
@@ -81,4 +81,4 @@
     );
 
 
-}( window.define ));
+}( window.define, window.angular ));

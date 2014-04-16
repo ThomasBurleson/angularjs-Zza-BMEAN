@@ -13,7 +13,6 @@
         , 'zza/order/model/Order'
         , 'zza/order/model/OrderItem'
         , 'zza/order/model/OrderItemOption'
-        , 'zza/order/model/OrderItemOptionTypes'
         , 'zza/order/model/OrderStatus'
 
     ], function(
@@ -28,7 +27,6 @@
         , Order
         , OrderItem
         , OrderItemOption
-        , OrderItemOptionTypes
         , OrderStatus
         
     ){
@@ -126,4 +124,4 @@
 
     });
 
-}( define ));
+}( window.define ));

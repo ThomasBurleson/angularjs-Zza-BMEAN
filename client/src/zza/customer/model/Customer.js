@@ -6,6 +6,7 @@
         // Build a `Customer` class definition; without the ORM-injected properties...
         return CustomerClazz();
 
+
         // **********************************************************
         //  Class Builder
         // **********************************************************
@@ -41,7 +42,7 @@
         {
             var Customer = function(){ };
 
-                defineProperty( Customer, "fullName", getFullName );
+            defineProperty( Customer, "fullName", getFullName );
 
             return Customer;
 
@@ -54,7 +55,7 @@
                 return this.firstName + " " + this.lastName;
             }
         }
+
     });
 
-
-}( define ));
+}( window.define ));

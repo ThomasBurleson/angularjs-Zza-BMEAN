@@ -202,4 +202,4 @@
 
 
 
-}( define  ));
+}( window.define  ));

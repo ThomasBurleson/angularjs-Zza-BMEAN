@@ -30,4 +30,4 @@
 
     });
 
-}( define, angular ));
+}( window.define, window.angular ));

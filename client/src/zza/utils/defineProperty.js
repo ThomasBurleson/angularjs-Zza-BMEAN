@@ -29,4 +29,4 @@
         return klass;
     }
 
-}( define ));
+}( window.define ));

@@ -82,8 +82,6 @@
             if (path === '/menu/') {path = path+'pizza';}
             return -1 < path.indexOf(state.tag);
         }
+    }
 
-
-    };
-
-}( define ));
+}( window.define ));

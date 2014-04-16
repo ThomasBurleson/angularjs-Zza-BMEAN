@@ -7,12 +7,13 @@
         , 'zza/orm/ORM'
 
         , 'zza/order/services/OrderService'
+        , 'zza/order/services/OptionGroupsService'
+
         , 'zza/order/controllers/CartController'
         , 'zza/order/controllers/OrderItemController'
         , 'zza/order/controllers/SidebarController'
 
         , 'zza/order/model/OrderItemOption'
-        , 'zza/order/model/OrderItemOptionTypes'
         , 'zza/order/model/PriceCalculator'
     ],
     function(
@@ -21,12 +22,13 @@
         , ORM
 
         , OrderService
+        , OptionGroupsService
+
         , CartController
         , OrderItemController
         , SidebarController
 
         , OrderItemOption
-        , OrderItemOptionTypes
         , PriceCalculator
     ){
         var moduleName = "zza.Order";
@@ -35,15 +37,18 @@
               .debug( "Registration of angular.module( `{0}` )",[moduleName]);
 
         angular.module( moduleName, [ ORM ])
+
                .controller( 'CartController'        , CartController        )
                .controller( 'OrderItemController'   , OrderItemController   )
                .controller( 'SidebarController'     , SidebarController     )
+
                .factory(    'orderService'          , OrderService          )
+               .factory(    'optionGroupsService'   , OptionGroupsService   )
+
                .factory(    'orderItemOption'       , OrderItemOption       )
-               .factory(    'orderItemOptionTypes'  , OrderItemOptionTypes  )
                .factory(    'pricing'               , PriceCalculator       );
 
         return moduleName;
     });
 
-}( define, angular ));
+}( window.define, window.angular ));

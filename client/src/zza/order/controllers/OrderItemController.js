@@ -3,8 +3,8 @@
 
     define( [], function()
     {
-        return  [ '$state', '$stateParams', 'session', 'orderItemOptionTypes', 'util', OrderItemController ]
-    })
+        return  [ '$state', '$stateParams', 'session', 'optionGroupsService', 'util', OrderItemController ]
+    });
 
     // **********************************************************
     // Controller Class
@@ -14,7 +14,7 @@
      * OrderItemController provides a view model associated with the `orderItem.html` view
      * and its `orderItem**.html` sub-views.
      */
-    function OrderItemController( $state, $stateParams, session, orderItemOptionTypes, util )
+    function OrderItemController( $state, $stateParams, session, optionGroupsService, util )
     {
         var vm     = this,
             $log   = util.$log.getInstance( "OrderItemController" )
@@ -36,7 +36,7 @@
             vm.sizes        = createSizeModels(info)
 
             // Product options grouped by types; each type is a tab UI
-            vm.optionTypes  = [];   //optionTypes.createVms( info.orderItem )
+            vm.optionTypes  = optionGroupsService.buildGroupsFor( info.orderItem )
 
         } else {
             showMenu()
@@ -141,4 +141,4 @@
         }
    }
 
-}( define ))
+}( window.define ));

@@ -56,4 +56,4 @@
     });
 
 
-}( define ));
+}( window.define ));
