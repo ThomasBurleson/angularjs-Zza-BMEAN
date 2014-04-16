@@ -7,7 +7,8 @@
 (function( define ) {
     'use strict';
 
-    define(['utils/supplant'], function( supplant ){
+    define(['utils/supplant', 'zza/utils/defineProperty' ], function( supplant, defineProperty )
+    {
 
         return ['$http', '$q', '$rootScope', '$timeout', '$log', 'config', Utils];
 
@@ -49,17 +50,6 @@
                 return $rootScope.$broadcast.apply($rootScope, arguments);
             }
 
-            // Assist in adding an ECMAScript 5 "definedProperty" to a class
-            function defineProperty(klass, propertyName, getter, setter){
-                var config = {
-                    enumerable: true,
-                    get: getter
-                };
-                if (setter){
-                    config.set = setter;
-                }
-                Object.defineProperty(klass.prototype, propertyName, config);
-            }
 
             /*************************************************************
              * Complex type helpers
@@ -73,13 +63,8 @@
 
             function getEntityManager(obj)
             {
-                if (obj.complexAspect) {
-                    return obj.complexAspect.getEntityAspect().entityManager;
-                } else if (obj.entityAspect) {
-                    return obj.entityAspect.entityManager;
-                }   else {
-                    return null;
-                }
+                return  obj.complexAspect   ? obj.complexAspect.getEntityAspect().entityManager :
+                        obj.entityAspect    ? obj.entityAspect.entityManager                    : null;
             }
 
 

@@ -42,7 +42,7 @@
          */
         function loadAllLookups()
         {
-            return lookups.fetchLookups();
+            return !session.lookups ? lookups.fetchLookups() : util.$q.when( session.lookups );
         }
 
         /**
