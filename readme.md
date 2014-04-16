@@ -15,8 +15,14 @@ Recent upgrades to the *upstream* source added UI-Router to provide robust neste
 4.  Clear separation of angular registrations from class registration
 5.  Consistent use of enhanced $log for full-workflow logging
 6.  Color-enhanced logging to easily highlight *route* logging (see above snapshot)
+7.  Consistent use of <xxx>Services; with a hidden back-plane ORM layer.
 
 > Considering the complexity of workflows and components within an AngularJS SPA, we cannot ignore the "unreasonable effectiveness of data"... Class and method logging delivers high quality data concerning the state and flow of an SPA. Do not underestimate the effectivenes and positive impact [on code quality] that be achieved with consistent **logging**.
+
+The most important [and radically different change] is the use of AngularJS services to hide all ORM activity and usages.
+Now the custom Breeze ORM setup and uses are hidden by services such as `ProductService`, `OrderService`, and `CustomerService`. And static lookups are performed by the global `SessionController`.
+
+This revised architecture supports the expected MVVM AngularJS best-practice architectures and leverages the ORM layer as the **behind-the-services** layer for the application. This encapsulation significantly improves understanding of the application layers and centralizes all ORM activity/configuration into the ORM layer.
 
 Shown below is a snapshot of the Zza application and its **console** view:
 
