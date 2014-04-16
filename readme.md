@@ -5,6 +5,8 @@ The "Zza Breeze-MEAN" sample app is a single page application (SPA) built with B
 
 This application is a fork of the excellent work by [Ward Bell](https://github.com/wardbell) and folks at IdeaBlade: [Breeze JS Samples](https://github.com/Breeze/breeze.js.samples) . That [*upstream* version](https://github.com/Breeze/breeze.js.samples/tree/master/node/zza-node-mongo) was created to demonstrate how AngularJS and BreezeJS can be used together to *easily* build complex LOB ( Line of Business ) applications. [BreezeJS](http://www.breezejs.com/) is an amazing JavaScript ORM library responsible the persistence and loading of complex object models.
 
+![screen shot 2014-04-16 at 11 09 12 am](https://cloud.githubusercontent.com/assets/210413/2721975/dc94b2c8-c581-11e3-927d-bbcb07591d7f.png)
+
 Recent upgrades to the *upstream* source added UI-Router to provide robust nested-view management and improved UX.  But many *enterprise* conventions were <u>not</u> introduced in order to keep the *student* sample focused upon BreezeJS integration. This *downstream* fork enhances the code and architecture with features demanded by larger applications and team-based development. These same features are ubiquitous in other technology/platform solutions: Java, AS3, etc... so why it seems obvious to use the same within AngularJS SPA architectures:
 
 1. Use of RequireJS to provide AMD and Class depedency management. <br>See [Dependency Injection Using RequireJS and AngularJS](http://solutionoptimist.com/2013/09/30/requirejs-angularjs-dependency-injection/) for detailed explanations.
