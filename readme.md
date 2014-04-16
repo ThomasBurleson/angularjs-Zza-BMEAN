@@ -8,7 +8,7 @@ The "Zza Breeze-MEAN" sample app is a single page application (SPA) built with B
 
 This application is a fork of the excellent work by [Ward Bell](https://github.com/wardbell) and folks at IdeaBlade: [Breeze JS Samples](https://github.com/Breeze/breeze.js.samples) . That [*upstream* version](https://github.com/Breeze/breeze.js.samples/tree/master/node/zza-node-mongo) was created to demonstrate how AngularJS and BreezeJS can be used together to *easily* build complex LOB ( Line of Business ) applications. [BreezeJS](http://www.breezejs.com/) is an amazing JavaScript ORM library responsible the persistence and loading of complex object models.
 
-![screen shot 2014-04-16 at 11 09 03 am](https://cloud.githubusercontent.com/assets/210413/2721976/dc95837e-c581-11e3-8309-1f3d89e51eed.png)
+![zza_about](https://cloud.githubusercontent.com/assets/210413/2725443/fe161cf4-c5ac-11e3-95b1-d9ad9692cc82.png)
 
 
 Recent upgrades to the *upstream* source added an improved user experience, code-cleanup, and integrated the AngularJS UI-Router plugin: to provide robust nested-view management.  
