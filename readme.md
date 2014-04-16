@@ -77,7 +77,7 @@ You only install these modules once.
 
 Open **localhost:8080** in a web browser to run the Zza application.
 
-## Release 0.8.0
+## Release 1.0.0
 
 * UpperCamelCase class names
 * Class packaging by features
@@ -87,3 +87,4 @@ Open **localhost:8080** in a web browser to run the Zza application.
 * Separation of script loading from HTML markup
 * Separation of Class registration from AngularJS instantiations.
 * Use of AngularJS UI-Router plugin for easy-to-maintain, sophisticated UX and workflows
+* Encapsulation of ORM classes... only utilized within the <xxx>Services and SessionController.
