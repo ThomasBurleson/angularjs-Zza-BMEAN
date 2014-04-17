@@ -27,7 +27,7 @@
         return {
             loadLookups        : loadAllLookups,
             loadProductsFor    : loadAllProductsFor,
-            getTemplateURLFor  : getTemplateURLFor
+            validateType       : validatedType
         };
 
 
@@ -57,22 +57,6 @@
             return util.$q.when( items );
         }
 
-        /**
-         * Based on product type, get the url for the Product *.html Templates
-         *
-         * @param String
-         * @returns Promise
-         */
-        function getTemplateURLFor( type )
-        {
-            $log.debug( "getTemplateURLFor( `{0}` )", [type] );
-
-            var templateURL = util.supplant( util.config.templates.menuURL, [ validatedType(type) ] );
-
-            return util.$q.when( templateURL );
-        }
-
-
         function validatedType( type )
         {
             var types = ['drink', 'pizza', 'salad'];
@@ -82,10 +66,9 @@
             }
             type = type || 'pizza';
 
-            $log.debug( "validatedType() => `{0}` ", [type] );
-
             return type;
         }
+
     }
 
 

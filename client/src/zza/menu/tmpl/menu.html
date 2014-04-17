@@ -2,12 +2,12 @@
     <div class="row-fluid" >
 
         <div class="span3">
-            <div ui-view="orderSidebar"></div>
+            <div ui-view="sidebar"></div>
         </div>
 
         <div class="span9">
             <div data-ng-controller="ProductController as vm">
-                <div data-ng-include="vm.template"></div>
+                <div data-ng-include="vm.templateURL"></div>
             </div>
         </div>
     </div>

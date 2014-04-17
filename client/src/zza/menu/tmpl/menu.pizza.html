@@ -4,10 +4,10 @@
     <div>
         <div class="row-fluid" data-ng-repeat="product in vm.products" >
             <div class="span3">
-                <img data-ng-click="vm.go(product)" class="img-polaroid hand" data-product-img-src="{{product.image}}" title="{{product.name}}"/>
+                <img data-ng-click="vm.showDetails(product)" class="img-polaroid hand" data-product-img-src="{{product.image}}" title="{{product.name}}"/>
             </div>
             <div class="span9">
-                <h3><a data-ng-click="vm.go(product)" class="hand">{{product.name}}</a> &nbsp;
+                <h3><a data-ng-click="vm.showDetails(product)" class="hand">{{product.name}}</a> &nbsp;
                 <img src="./assets/images/icon_vegetarian.png" data-ng-show="product.isVegetarian" alt="Vegetarian" title="Vegetarian"/>
                 <img src="./assets/images/icon_tomato.png" data-ng-show="product.withTomatoSauce" alt="Has Tomato Sauce" title="Has Tomato Sauce"/>
                 </h3>

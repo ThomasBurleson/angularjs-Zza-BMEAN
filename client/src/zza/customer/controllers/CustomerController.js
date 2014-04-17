@@ -32,6 +32,8 @@
         vm.select             = selectCustomer;
         vm.filteredCustomers  = filteredByName;
 
+        $log.debug( "vm instantiated..." );
+
         // Auto-load all known customers
 
         showLoading().then(    customerService.loadAll )

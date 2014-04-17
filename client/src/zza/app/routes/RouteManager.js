@@ -50,20 +50,27 @@
                         }
                     }
                 })
+                .state( 'app.customer',
+                {
+                    url: '/customer',
+                    views : {
+                        'content@' : {
+                            templateUrl: 'src/zza/customer/tmpl/customer.html'
+
+                        }
+                    }
+                })
                 .state( 'app.order',
                 {
                     // This is the shell layout for the Order dashboard (e.g. order.html)
-                    // which has an orderSidebar area and an order content area
+                    // which has an sidebar area and an order content area
                     url : '/order',
                     views : {
                         'content@' : {
                             templateUrl: 'src/zza/order/tmpl/order.html'
                         },
-                        'orderSidebar@app.order' : {
+                        'sidebar@app.order' : {
                             templateUrl: 'src/zza/order/tmpl/orderSidebar.html'
-                        },
-                        'content@app.order' : {
-                            // NOTE: Blank until filled by a more specific app.order state
                         }
                     }
                 })
@@ -72,17 +79,6 @@
                         // An OrderItem editor state
                         // The state the user picks an OrderItem from one of the order
                         url : '/:orderId/:productType/:orderItemId',
-                        views : {
-                            'content@app.order' : {
-                                templateUrl : 'src/zza/order/tmpl/orderItem.html'
-                            }
-                        }
-                    })
-                    .state( 'app.order.product',
-                    {
-                        // An OrderItem editor state
-                        // The state after a user picks a product from a product menu
-                        url : '^/menu/:productType/:productId',
                         views : {
                             'content@app.order' : {
                                 templateUrl : 'src/zza/order/tmpl/orderItem.html'
@@ -99,35 +95,30 @@
                             }
                         }
                     })
-
-                .state( 'app.menu',
-                {
-                    // This state shows the Product listings (pizzas, salads, drinks)
-                    // from which a product can be selected; selection navigates to the
-                    // the produce details page.
-                    url: '/menu/:productType',
-                    views : {
-                        'content@' : {
-                            templateUrl: 'src/zza/menu/tmpl/menu.html'
-                        },
-                        'orderSidebar@app.menu' : {
-                            templateUrl: 'src/zza/order/tmpl/orderSidebar.html'
+                    .state( 'app.order.products',
+                    {
+                        // This state shows the Product listings (pizzas, salads, drinks)
+                        // from which a product can be selected; selection navigates to the
+                        // the produce details page.
+                        url: '/:productType',
+                        views : {
+                            'content@app.order' : {
+                                templateUrl: 'src/zza/menu/tmpl/menu.html'
+                            }
                         }
-                    }
-                })
-                .state( 'app.customer',
-                {
-                    url: '/customer',
-                    views : {
-                        'content@' : {
-                            templateUrl: 'src/zza/customer/tmpl/customer.html'
+                    })
+                        .state( 'app.order.products.item',
+                        {
+                            // An product detail `review and purchase` state
+                            // The state after a user picks a product from a product menu
+                            url : '/:productId',
+                            views : {
+                                'content@app.order' : {
+                                    templateUrl : 'src/zza/order/tmpl/orderItem.html'
+                                }
+                            }
+                        });
 
-                        },
-                        'orderSidebar@app.menu' : {
-                            templateUrl: 'src/zza/order/tmpl/orderSidebar.html'
-                        }
-                    }
-                });
 
         $urlRouterProvider
             .when( '/menu', '/menu/pizza'  ) // Switch to Pizza listing view

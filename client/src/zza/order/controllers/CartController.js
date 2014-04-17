@@ -41,9 +41,10 @@
 
             vm.hasExtraCost = false;
             vm.haveItems = (cart.orderItems.length > 0);
-            if ( vm.haveItems ) {
-                var total = pricing.calcOrderItemsTotal( cart );
-                vm.hasExtraCost = pricing.orderHasExtraCostOptions( cart );
+            if ( vm.haveItems )
+            {
+                pricing.calculateTotals( cart );
+                vm.hasExtraCost = pricing.hasExtraCosts( cart );
             }
         }
 

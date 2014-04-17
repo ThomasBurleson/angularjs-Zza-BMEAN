@@ -24,12 +24,8 @@
     function PriceCalculator() {
 
         return {
-            calcOrderItemsTotal     : getOrderItemsTotal,
-            calcItemTotalPrice      : getItemTotalPrice,
-            calcItemUnitPrice       : getItemUnitPrice,
-            calcItemOptionPrice     : getItemOptionPrice,
-            calcItemOptionUnitPrice : getItemOptionUnitPrice,
-            orderHasExtraCostOptions: orderHasExtraCostOptions
+            calculateTotals : getOrderItemsTotal,
+            hasExtraCosts   : orderHasExtraCostOptions
         };
 
 

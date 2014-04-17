@@ -3,16 +3,18 @@
     <p>You'll be thirsty after all that pizza so be sure to get plenty of cold drinks.</p>
     <div>
         <div class="row-fluid" data-ng-repeat="product in vm.products" >
-            <div class="span3">
-                <a data-ng-click="vm.go(product)" class="hand">
-                    <img data-product-img-src="{{product.image}}" />
-                </a>
+            <div data-ng-click="vm.showDetails(product)" >
+                <div class="span3">
+                    <a class="hand">
+                        <img data-product-img-src="{{product.image}}" />
+                    </a>
+                </div>
+                <div class="span9">
+                    <h3><a class="hand">{{product.name}}</a> &nbsp;</h3>
+                    <p>{{product.description}}</p>
+                </div>
+                <hr />
             </div>
-            <div class="span9">
-                <h3><a data-ng-click="vm.go(product)" class="hand">{{product.name}}</a> &nbsp;</h3>
-                <p>{{product.description}}</p>
-            </div>
-            <hr />
         </div>
     </div>
 </div>

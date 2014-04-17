@@ -26,10 +26,10 @@
         vm.cartSref    = 'app.order.cart';
         vm.isSelected  = isSelected;
         vm.states      = [
-            { name: 'Home'     , sref: 'app.welcome'                       , roots: ['/welcome']        }
-            ,{ name: 'Order'    , sref: 'app.menu({productType: \'pizza\'})', roots: ['/order','/menu']  }
-            ,{ name: 'Customer' , sref: 'app.customer'                      , roots: ['/customer']       }
-            ,{ name: 'About'    , sref: 'app.about'                         , roots: ['/about']          }
+             { name: 'Home'     , sref: 'app.welcome'                                   , roots: ['/welcome']        }
+            ,{ name: 'Order'    , sref: 'app.order.products({productType: \'pizza\'})'  , roots: ['/order','/menu']  }
+            ,{ name: 'Customer' , sref: 'app.customer'                                  , roots: ['/customer']       }
+            ,{ name: 'About'    , sref: 'app.about'                                     , roots: ['/about']          }
         ];
 
         // **********************************************************

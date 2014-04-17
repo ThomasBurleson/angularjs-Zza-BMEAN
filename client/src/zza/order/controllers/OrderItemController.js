@@ -25,7 +25,6 @@
             , info         = getOrderItemInfo( )
             , isDraftOrder = false;
 
-        $log.debug( "vm instantiated..." )
 
         if ( info ) {
             isDraftOrder    = info.orderItem.order === session.draftOrder
@@ -36,9 +35,13 @@
             vm.sizes        = createSizeModels(info)
 
             // Product options grouped by types; each type is a tab UI
-            vm.optionTypes  = optionGroupsService.buildGroupsFor( info.orderItem )
+            vm.optionTypes  = optionGroupsService.buildGroupsFor( info.orderItem );
+
+            $log.debug( "vm instantiated..." )
 
         } else {
+            $log.debug( "re-routing to menu listing..." );
+
             showMenu()
         }
 
@@ -137,7 +140,7 @@
         function showMenu(){
             $log.debug( "showMenu()" )
 
-            $state.go('app.menu', {productType : $stateParams.productType})
+            $state.go('app.order.products', {productType : $stateParams.productType})
         }
    }
 

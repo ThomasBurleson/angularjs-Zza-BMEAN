@@ -8,13 +8,16 @@
 
         , 'zza/order/services/OrderService'
         , 'zza/order/services/OptionGroupsService'
+        , 'zza/order/services/PriceCalculator'
 
         , 'zza/order/controllers/CartController'
         , 'zza/order/controllers/OrderItemController'
         , 'zza/order/controllers/SidebarController'
 
+        , 'zza/order/model/Order'
+        , 'zza/order/model/OrderItem'
         , 'zza/order/model/OrderItemOption'
-        , 'zza/order/model/PriceCalculator'
+        , 'zza/order/model/OrderStatus'
     ],
     function(
           logger
@@ -23,13 +26,16 @@
 
         , OrderService
         , OptionGroupsService
+        , PriceCalculator
 
         , CartController
         , OrderItemController
         , SidebarController
 
+        , Order
+        , OrderItem
         , OrderItemOption
-        , PriceCalculator
+        , OrderStatus
     ){
         var moduleName = "zza.Order";
 
@@ -44,8 +50,6 @@
 
                .factory(    'orderService'          , OrderService          )
                .factory(    'optionGroupsService'   , OptionGroupsService   )
-
-               .factory(    'orderItemOption'       , OrderItemOption       )
                .factory(    'pricing'               , PriceCalculator       );
 
         return moduleName;

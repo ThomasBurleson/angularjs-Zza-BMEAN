@@ -46,8 +46,6 @@
             return util.supplant( "recent={cartOrder.orderItems.length},order={draftOrder.orderItems.length}", vm );
         }
 
-
-
         function cartItemStateRef(item){
             return getItemStateRef('cart', item)
         }
@@ -59,7 +57,6 @@
         function getItemStateRef(orderId, item){
             var params = {orderId: orderId, productType: item.product.type, orderItemId: item.id };
             return 'app.order.item('+JSON.stringify(params)+')';
-            //return '#/order/cart/'+item.product.type+'/'+item.id;
         }
 
         function getMenuStates(){
@@ -71,7 +68,7 @@
             return menus.map(function(s){
                 return {
                     name: s.name,
-                    sref: "app.menu({productType: '"+ s.tag + "'})",
+                    sref: "app.order.products({productType: '"+ s.tag + "'})",
                     tag: s.tag
                 }
             });
@@ -79,7 +76,7 @@
 
         function isSelected( state ){
             var path = $location.path().toLowerCase();
-            if (path === '/menu/') {path = path+'pizza';}
+            if (path === '/product/') {path = path+'pizza';}
             return -1 < path.indexOf(state.tag);
         }
     }

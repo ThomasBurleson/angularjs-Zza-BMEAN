@@ -15,22 +15,34 @@
      */
     function RouteLogger( $rootScope, $log )
     {
+        // Colorize logging output for UI-Routing...
         $log = $log.getInstance('RouteLogger', "color:rgb(100, 151, 100);");
 
-        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams)
-        {
-            $log.debug("$stateChangeStart: from '{0}' -> '{1}'", [ fromState.name, toState.name] );
-        });
 
-        $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error)
-        {
-            $log.debug("$stateChangeError: from '{0}' -> '{1}', Error = {2}", [ fromState.name, toState.name, error] );
-        });
+        $rootScope.$on('$stateChangeStart'  , onEventListener );
+        $rootScope.$on('$stateChangeError'  , onEventListener );
+        $rootScope.$on('$stateChangeSuccess', onEventListener );
 
-        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams)
+        /**
+         * Shared event handler for ui-router $state events
+         */
+        function onEventListener( event, toState, toParams, fromState, fromParams,  error )
         {
-            $log.debug("$stateChangeSuccess: from '{0}' -> '{1}', params = {2}", [ fromState.name, toState.name, JSON.stringify(toParams)] );
-        });
+            var args = [ event.name, fromState.name, toState.name];
+
+            switch( event.name )
+            {
+                case '$stateChangeStart'   :
+                    $log.debug("{0}: from '{1}' -> '{2}'"               , args );                                      break;
+
+                case '$stateChangeError'   :
+                    $log.debug("{0}: from '{1}' -> '{2}', Error = {3}"  , args.concat([ error ]));                     break;
+
+                case '$stateChangeSuccess' :
+                    $log.debug("{0}: from '{1}' -> '{2}', params = {3}" , args.concat([ JSON.stringify(toParams) ]));  break;
+            }
+        }
     }
 
-}( define, JSON ));
+
+}( window.define, window.JSON ));
