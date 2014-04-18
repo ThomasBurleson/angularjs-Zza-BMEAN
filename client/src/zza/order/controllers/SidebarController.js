@@ -28,22 +28,39 @@
             vm.showRecentlyViewed = false;
             vm.showOrderSummary   = false;
 
-        $scope.$watch( activityStatus, function() {
-            vm.showRecentlyViewed = (0 < vm.draftOrder.orderItems.length);
-            vm.showOrderSummary   = (0 < vm.cartOrder.orderItems.length);
-        });
-
         $log.debug( "vm instantiated..." );
+
+        watchActivityStatus();
 
 
         // **********************************************************
         // Private Methods
         // **********************************************************
 
-
-        function activityStatus()
+        /**
+         * Watch for changes in EITHER the draft or cart Orders
+         */
+        function watchActivityStatus()
         {
-            return util.supplant( "recent={cartOrder.orderItems.length},order={draftOrder.orderItems.length}", vm );
+            var statusTmpl = "recent={cartOrder.orderItems.length},order={draftOrder.orderItems.length}",
+                unwatch    = $scope.$watch( function ()
+                             {
+                                // publish unique status `state`
+                                return util.supplant( statusTmpl, vm );
+
+                             }, updateShowFlags );
+
+            $scope.$on( "$destroy", unwatch );
+
+        }
+
+        /**
+         * Update flags to hide/show the draft or cart orders
+         */
+        function updateShowFlags()
+        {
+            vm.showRecentlyViewed = (0 < vm.draftOrder.orderItems.length);
+            vm.showOrderSummary   = (0 < vm.cartOrder.orderItems.length);
         }
 
         function cartItemStateRef(item){

@@ -1,17 +1,26 @@
-<div class="well">
+<div class="well animate">
     <div data-ng-show="vm.isLoading">
         <h2>Loading customers ... </h2>
     </div>
     <div data-ng-hide="vm.isLoading">
         <p>
-            <input type="text" class="input-small search-query" autofocus placeholder="Filter"
-                   data-ng-model="vm.customerFilterText" />
+            <input type="search"
+                   class="input-small search-query"
+                   autofocus
+                   placeholder="Filter"
+                   data-ng-model="vm.filterCriteria" />
         </p>
 
         <ul class="nav nav-list">
-            <li data-ng-repeat="customer in vm.filteredCustomers()" data-ng-class="{active: vm.isSelected(customer)}" >
+
+            <li class="customers-animate"
+                data-ng-class="{active: vm.isSelected(customer)}"
+                data-ng-repeat="customer in vm.customers | filter:vm.filteredByName track by customer.id"  >
+
                 <a data-ng-click="vm.select(customer)" class="hand">{{customer.fullName}}</a>
+
             </li>
+
         </ul>
     </div>
 </div>

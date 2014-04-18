@@ -3,7 +3,7 @@
 
     define( [], function()
     {
-        return [ 'customer.state', 'customerService', 'util', '$log', CustomerController];
+        return [ 'customer.state', 'customerService', 'util', '$scope', CustomerController];
     });
 
     // **********************************************************
@@ -14,31 +14,35 @@
      * CustomerController provides a view model associated with the `customer.html` view
      * and its `customer.*.html` sub-view templates
      */
-    function CustomerController(customerState, customerService, util, $log )
+    function CustomerController(customerState, customerService, util, $scope)
     {
-        $log = $log.getInstance("CustomerController");
+        var $log               = util.$log.getInstance("CustomerController"),
+            availableCustomers = [ ],
+            vm                 = this;
 
-        var vm = this;
+            vm.customers          = availableCustomers;
+            vm.orderHeaders       = [];
+            vm.selectedCustomer   = null;
 
-        vm.customers          = [];
-        vm.orderHeaders       = [];
-        vm.selectedCustomer   = null;
-        vm.customerFilterText = '';
+            vm.isLoadingCustomers = false;
+            vm.isLoadingOrders    = false;
 
-        vm.isLoadingCustomers = false;
-        vm.isLoadingOrders    = false;
+            vm.select             = selectCustomer;
+            vm.isSelected         = isSelected;
 
-        vm.isSelected         = isSelected;
-        vm.select             = selectCustomer;
-        vm.filteredCustomers  = filteredByName;
+            vm.filterCriteria     = '';
+            vm.filteredByName     = filteredByName;
 
         $log.debug( "vm instantiated..." );
 
-        // Auto-load all known customers
+        // Perform Auto-load all known customers
 
-        showLoading().then(    customerService.loadAll )
-            .then(    showCustomers           )
-            .finally( hideLoading             );
+        showLoading()
+             .then(    customerService.loadAll )
+             .then(    showCustomers           )
+             .then(    enableAutoSelect        )
+             .finally( hideLoading             );
+
 
         // **********************************************************
         // Private Methods
@@ -49,15 +53,54 @@
             return vm.selectedCustomer === customer;
         }
 
-        function showCustomers(customers)
+
+        /**
+         *  Internally watch the filterCriteria for changes...
+         *  then auto-select the customer if it is the ONLY one found...
+         */
+        function enableAutoSelect()
+        {
+            var unwatch = $scope.$watch( function()
+                          {
+                              return vm.filterCriteria;
+
+                          }, autoSelectCustomer );
+
+            // Make sure to `unwatch` when the controller is released...
+
+            $scope.$on( "$destroy", unwatch );
+        }
+
+
+        /**
+         * Show all available customers and select one if appropriate...
+         * @param customers
+         */
+        function showCustomers( customers )
         {
             $log.debug( "showCustomers()" );
 
-            vm.customers = customers;
+            vm.customers = availableCustomers = customers;
 
-            var found = filterByID( customerState.selectedCustomerId );
+            if ( customerState.selectedCustomerId )
+            {
+                selectCustomer(findCustomerByID( customerState.selectedCustomerId ));
 
-            selectCustomer( (found && found.length) ? found[0] : null );
+            }  else {
+
+                autoSelectCustomer();
+            }
+        }
+
+        /**
+         * Auto select a customer if filtering finds only one (1) customer
+         */
+        function autoSelectCustomer()
+        {
+            var people = availableCustomers.filter( filteredByName),
+                found  = (people.length == 1) ? people[0] : null;
+
+            selectCustomer( found || vm.selectedCustomer );
         }
 
         /**
@@ -73,38 +116,47 @@
             vm.selectedCustomer = customer;
             customerState.selectedCustomerId = customer && customer.id;
 
-            showLoading().then( getCustomerOrders )
-                .then( hideLoading       );
+            showLoading("orders").then( getCustomerOrders )
+                                 .then( hideLoading       );
 
         }
 
+        /**
+         * Get a summary listing of orders for the selectedCustomer
+         * @returns {*}
+         */
         function getCustomerOrders()
         {
-            var customer = vm.selectedCustomer;
+            var customer      = vm.selectedCustomer,
+                showOrderList = function (orderHeaders)
+                {
+                    vm.orderHeaders = orderHeaders;
+                };
 
             $log.debug( "getCustomerOrders({id})", customer );
 
             return customerService.getOrdersFor( customer )
-                .then(function (orderHeaders)
-                {
-                    vm.orderHeaders = orderHeaders;
-                });
+                                  .then( showOrderList );
         }
 
         // **********************************************************
         // Loading Indicator methods
         // **********************************************************
 
-        function showLoading()
+        function showLoading(what)
         {
-            vm.isLoadingCustomers = true;
-            return util.resolved;
+            vm.isLoadingCustomers = (what == "orders") ? false : true;
+            vm.isLoadingOrders    = (what == "orders") ? true  : false;
+
+            return util.$q.when( true );
         }
 
         function hideLoading()
         {
             vm.isLoadingCustomers = false;
-            return util.resolved;
+            vm.isLoadingOrders    = false;
+
+            return util.$q.when( true );
         }
 
         // **********************************************************
@@ -112,21 +164,23 @@
         // **********************************************************
 
         /**
-         * Filter list to find customer by ID
+         * Locate customer by ID
          *
          * @param customer
          * @returns {boolean}
          */
-        function filterByID( id )
+        function findCustomerByID( id )
         {
             if ( !id ) id = customerState.selectedCustomerId;
 
             $log.debug( "filterByID( `{0}` )",[id] );
 
-            return vm.customers.filter( function ( customer )
-            {
-                return customer.id === id;
-            });
+            var list =  availableCustomers.filter( function ( customer )
+                        {
+                            return customer.id === id;
+                        });
+
+            return list.length ? list[0] : null;
         }
 
         /**
@@ -135,19 +189,22 @@
          * @param customer
          * @returns {boolean}
          */
-        function filteredByName( text )
+        function filteredByName( item )
         {
-            if ( !text ) text = vm.customerFilterText.toLowerCase();
+            var full    = toLowerCase( item.fullName     );
+            var partial = toLowerCase( vm.filterCriteria );
 
-            $log.debug( "filteredByName( `{0}` )",[text] );
+            return ( partial == "" ) || (-1 < full.indexOf(partial));
+        }
 
-            return  (text === '') ? vm.customers : vm.customers.filter( filterByFullName );
-
-            function filterByFullName( customer)
-            {
-                return customer.firstName.toLowerCase().indexOf(text) == 0 ||
-                    customer.lastName.toLowerCase().indexOf(text) == 0;
-            }
+        /**
+         *
+         * @param value
+         * @returns {string}
+         */
+        function toLowerCase(value)
+        {
+            return (value || "").toLowerCase();
         }
 
 

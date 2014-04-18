@@ -9,11 +9,11 @@
         </ul>
     </div>
 
-    <div class="well" style="background-color: rgb(199, 235, 199); padding-bottom: 40px;" ng-show="vm.showOrderSummary">
+    <div class="well animated cart" ng-show="vm.showOrderSummary" >
         Order Summary
         <table class="table table-condensed" style="font-size:small">
             <tr><th>Item</th><th>Size</th><th>Qty</th></tr>
-            <tr data-ng-repeat="item in vm.cartOrder.orderItems">
+            <tr data-ng-repeat="item in vm.cartOrder.orderItems" class="orderItem-animate">
                 <td><a href="#" data-ui-sref="{{vm.cartItemStateRef(item)}}">{{item.product.name}}</a></td>
                 <td>{{item.productSize.name}}</td>
                 <td>{{item.quantity}}</td>
@@ -26,11 +26,11 @@
 
     </div>
 
-    <div class="well" ng-show="vm.showRecentlyViewed">
+    <div class="well animated" ng-show="vm.showRecentlyViewed" >
         Recently Viewed
         <table class="table table-condensed" style="font-size:small">
             <tr><th>Item</th><th>Size</th><th>Qty</th></tr>
-            <tr data-ng-repeat="item in vm.draftOrder.orderItems">
+            <tr data-ng-repeat="item in vm.draftOrder.orderItems" class="orderItem-animate">
                 <td><a href="#" data-ui-sref="{{vm.draftItemStateRef(item)}}">{{item.product.name}}</a></td>
                 <td>{{item.productSize.name}}</td>
                 <td>{{item.quantity}}</td>

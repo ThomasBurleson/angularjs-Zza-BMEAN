@@ -25,6 +25,7 @@
         ){
             var dependencies = [
                    , "ngSanitize"            // Vendor-defined NG modules...
+                   , "ngAnimate"
                    , 'breeze.angular'
                    , 'ui.router'
                    , 'ui.bootstrap'

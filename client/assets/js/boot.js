@@ -16,6 +16,7 @@
 
           { angular      : "vendor/angular/angular.js"                     }
         , { ngSanitize   : "vendor/angular-sanitize/angular-sanitize.js"   }
+        , { ngAnimate    : "vendor/angular-animate/angular-animate.js"   }
         , { uiRoute      : "vendor/angular-ui-router/release/angular-ui-router.js" }
         , { uibootstrap  : "vendor/angular-bootstrap/ui-bootstrap-tpls.js" }
 

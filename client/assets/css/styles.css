@@ -73,3 +73,91 @@ tr.narrow td {
     font-size: larger;
     font-weight: bold;
 }
+
+
+/***********************************/
+/***** Customer List Animation *****/
+
+.customers-animate {
+    line-height:40px;
+    list-style:none;
+    /*box-sizing:border-box;*/
+    border-bottom: 1px solid white;
+    -webkit-transition: .3s linear all;
+    transition: .3s linear all;
+}
+
+.customers-animate.ng-leave.ng-leave-active,
+.customers-animate.ng-move,
+.customers-animate.ng-enter {
+
+    opacity: 0;
+    max-height:0;
+}
+
+.customers-animate.ng-leave,
+.customers-animate.ng-move.ng-move-active,
+.customers-animate.ng-enter.ng-enter-active {
+    opacity: 1.0;
+    max-height:40px;
+}
+
+
+
+/***********************************/
+/***** Order Sidebar Animations ****/
+
+.well.animated, .well.animated.cart  {
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    transition: 0.5s all;
+}
+.well.animated.cart {
+    background-color: rgb(199, 235, 199);
+    padding-bottom: 40px;
+}
+
+.well.animated.ng-hide-remove, .well.animated.ng-hide-add,
+.well.animated.cart.ng-hide-remove, .well.animated.cart.ng-hide-add {
+    display: block !important;
+}
+
+
+.well.animated.ng-hide-remove, .well.animated.ng-hide-add.ng-hide-add-active,
+.well.animated.cart.ng-hide-remove, .well.animated.cart.ng-hide-add.ng-hide-add-active {
+    opacity: 0.0;
+}
+
+.well.animated.ng-hide-add, .well.animated.ng-hide-remove.ng-hide-remove-active,
+.well.animated.cart.ng-hide-add, .well.animated.cart.ng-hide-remove.ng-hide-remove-active {
+    opacity: 1;
+}
+
+.orderItem-animate {
+    line-height:40px;
+    list-style:none;
+    /*box-sizing:border-box;*/
+    border-bottom: 1px solid white;
+    -webkit-transition: 0.25s all;
+    -moz-transition: 0.25s all;
+    -ms-transition: 0.25s all;
+    -o-transition: 0.25s all;
+    transition: 0.25s all;
+}
+
+.orderItem-animate.ng-leave.ng-leave-active,
+.orderItem-animate.ng-move,
+.orderItem-animate.ng-enter {
+
+    opacity:0;
+    max-height:0;
+}
+
+.orderItem-animate.ng-leave,
+.orderItem-animate.ng-move.ng-move-active,
+.orderItem-animate.ng-enter.ng-enter-active {
+    opacity:1;
+    max-height:40px;
+}
