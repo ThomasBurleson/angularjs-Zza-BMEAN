@@ -85,6 +85,7 @@
                             }
                         }
                     })
+
                     .state( 'app.order.cart',
                     {
                         // This state shows the Cart items list view
@@ -95,6 +96,7 @@
                             }
                         }
                     })
+
                     .state( 'app.order.products',
                     {
                         // This state shows the Product listings (pizzas, salads, drinks)
