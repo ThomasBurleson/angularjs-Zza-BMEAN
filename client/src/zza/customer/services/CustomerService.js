@@ -41,12 +41,13 @@
 
             var customers =  orm.manager.getEntities('Customer');
 
-            return  customers.length ? util.$q.when(customers) :
+            return  customers.length                        ?
+                    util.$q.when(customers)                 :
                     breeze.EntityQuery.from('Customers')
-                    .orderBy('firstName, lastName')
-                    .using( orm.manager )
-                    .execute()
-                    .then( extractData, reportQueryFail );
+                          .orderBy('firstName, lastName')
+                          .using( orm.manager )
+                          .execute()
+                          .then( extractData, reportQueryFail );
         }
 
         /**
@@ -58,14 +59,15 @@
         {
             $log.debug( "getOrdersForCustomer({id})", customer );
 
-            return  !customer ? util.$q.reject( "Invalid Customer `null`" ) :
-                breeze.EntityQuery.from('Orders')
-                    .where('customerId', 'eq', customer.id )
-                    .orderBy( 'ordered desc' )
-                    .select('id, statusId, status, ordered, delivered, deliveryCharge, itemsTotal')
-                    .using( orm.manager )
-                    .execute()
-                    .then( extractData, reportQueryFail );
+            return  !customer                                       ?
+                    util.$q.reject( "Invalid Customer `null`" )     :
+                    breeze.EntityQuery.from('Orders')
+                          .where('customerId', 'eq', customer.id )
+                          .orderBy( 'ordered desc' )
+                          .select('id, statusId, status, ordered, delivered, deliveryCharge, itemsTotal')
+                          .using( orm.manager )
+                          .execute()
+                          .then( extractData, reportQueryFail );
         }
 
 

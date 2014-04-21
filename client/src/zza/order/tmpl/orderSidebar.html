@@ -13,7 +13,7 @@
         Order Summary
         <table class="table table-condensed" style="font-size:small">
             <tr><th>Item</th><th>Size</th><th>Qty</th></tr>
-            <tr data-ng-repeat="item in vm.cartOrder.orderItems" class="orderItem-animate">
+            <tr data-ng-repeat="item in vm.cartOrder.orderItems" class="orderItem animated">
                 <td><a href="#" data-ui-sref="{{vm.cartItemStateRef(item)}}">{{item.product.name}}</a></td>
                 <td>{{item.productSize.name}}</td>
                 <td>{{item.quantity}}</td>
@@ -30,7 +30,7 @@
         Recently Viewed
         <table class="table table-condensed" style="font-size:small">
             <tr><th>Item</th><th>Size</th><th>Qty</th></tr>
-            <tr data-ng-repeat="item in vm.draftOrder.orderItems" class="orderItem-animate">
+            <tr data-ng-repeat="item in vm.draftOrder.orderItems" class="orderItem animated">
                 <td><a href="#" data-ui-sref="{{vm.draftItemStateRef(item)}}">{{item.product.name}}</a></td>
                 <td>{{item.productSize.name}}</td>
                 <td>{{item.quantity}}</td>
