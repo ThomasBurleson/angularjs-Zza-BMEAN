@@ -4,6 +4,7 @@
         <img src="./assets/images/icon_tomato.png" data-ng-class="{hide: !vm.product.withTomatoSauce}" alt="Has Tomato Sauce" title="Has Tomato Sauce"/>
     </h2>
     <div>
+        <button class="btn btn-success" data-ng-show="vm.isDraftOrder" data-ng-click="vm.addToCart()" style="float:right; margin-right:200px; margin-top:55px;">Add to Cart</button>
         <img class="img-polaroid" data-product-img-src="{{vm.product.image}}" title="{{vm.product.name}}"/>
         <p class="description">{{vm.product.description}}</p>
         <form class="form-horizontal">
@@ -40,7 +41,7 @@
                 </tab>
             </tabset>
             <p></p>
-            <button class="btn" data-ng-show="vm.isDraftOrder" data-ng-click="vm.addToCart()">Add to Cart</button>
+
         </form>
     </div>
 </div>
