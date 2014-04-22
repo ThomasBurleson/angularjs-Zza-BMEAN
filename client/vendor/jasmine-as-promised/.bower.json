@@ -1,0 +1,24 @@
+{
+  "name": "jasmine-as-promised",
+  "version": "0.0.8",
+  "main": "./src/jasmine-as-promised.js",
+  "dependencies": {
+    "jasmine": "1.3.1"
+  },
+  "devDependencies": {
+    "jasmine": "1.3.1",
+    "q": "~0.9.7",
+    "angular": "angular#1.2.0-rc.2",
+    "angular-mocks": "angular-mocks#1.2.0-rc.2"
+  },
+  "homepage": "https://github.com/Mindspace/jasmine-as-promised",
+  "_release": "0.0.8",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.8",
+    "commit": "7469256ad753afee599c17711f8f253c765e893c"
+  },
+  "_source": "git://github.com/Mindspace/jasmine-as-promised.git",
+  "_target": "0.0.8",
+  "_originalSource": "jasmine-as-promised"
+}

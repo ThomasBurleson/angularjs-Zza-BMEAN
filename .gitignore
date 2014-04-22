@@ -1,5 +1,4 @@
 .DS_Store
-client/vendor
 client/build/node_modules
 database/zza
 server/node_modules
