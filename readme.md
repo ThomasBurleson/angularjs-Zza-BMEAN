@@ -34,6 +34,14 @@ Shown below is a snapshot of the Zza application and its **console** view:
 
 > ![zza with console logging](https://cloud.githubusercontent.com/assets/210413/2667789/18dbb27e-c0b2-11e3-92bb-054483fe1bf1.png)
 
+## Live Demo
+
+A live version has been deployed to Heroku:  [Zza Live](http://zza-breeze-mean.herokuapp.com/)!
+
+This version will demonstrate the UI-Router and AngularJS transitions/animations within the screens, the live logging (Chrome Console), deep linking, routing/navigation, and more... 
+
+> The Heroku deployment is published on a **free**, sleep-after-1-hour virtual image. This means that the **1st-time** loading of the application may require 3-5 seconds to startup. Subsequent database queries and loads should be much faster. So please wait during the initial startup...
+
 
 ## Prerequisites
 
