@@ -25,7 +25,7 @@ var express        = require('express')
     breezeRoutes.configure( app );                // Configure both breeze-specific routes for REST API
 
     // Support static file content
-    app.use( fileServer( process.cwd() ));
+    app.use( fileServer( process.cwd() + '../client' ));
 
     app.use( errorHandler );
 
