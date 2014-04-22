@@ -6,7 +6,7 @@
         <b>Address:</b> {{vm.selectedCustomer.address.street}}, {{vm.selectedCustomer.address.city}},
         {{vm.selectedCustomer.address.state}} {{vm.selectedCustomer.address.zip}}</p>
         <hr/>
-        <div data-ng-show="vm.isLoadingOrders">
+        <div data-ng-show="vm.isLoadingOrders" class="loading">
             <h2>Loading orders ... </h2>
         </div>
         <div data-ng-hide="vm.isLoadingOrders">

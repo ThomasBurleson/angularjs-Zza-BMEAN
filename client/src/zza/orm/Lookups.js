@@ -61,8 +61,8 @@
                                         return lookups = extendService( data.results[0] );
                                     },
                                     function (error) {
-                                        logger.error(error.message, "lookups initialization failed");
-                                        logger.error("Alert: Is your MongoDB server running ?");
+                                        $log.error(error.message, "lookups initialization failed");
+                                        $log.error("Alert: Is your MongoDB server running ?");
 
                                         // so downstream fail handlers hear it too
                                         throw error;

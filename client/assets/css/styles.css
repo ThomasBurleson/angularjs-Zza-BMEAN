@@ -79,3 +79,7 @@ tr.narrow td {
     font-weight: bold;
 }
 
+
+.loading h2 {
+    color: green;
+}
