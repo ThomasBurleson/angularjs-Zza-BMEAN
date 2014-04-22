@@ -6,7 +6,7 @@ module.exports = {
 };
 
 var bmongo   = require('breeze-mongodb')
-  , database = require('./database' );
+  , database = require('./remote-database' );
 
 /**
  * Configure Express app with get()/post() Breeze route handlers

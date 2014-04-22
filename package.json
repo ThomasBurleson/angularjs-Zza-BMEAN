@@ -3,7 +3,7 @@
   "description": "A demonstration of Breeze, MongoDb, Express, Angular, and Node.js (BMEAN)",
   "version": "0.8.0",
   "private": true,
-  "main": "./server/app-server.js",
+  "main": "app-server.js",
   "dependencies": {
     "body-parser": "~1.0.0",
     "breeze-mongodb": "^0.0.6",
