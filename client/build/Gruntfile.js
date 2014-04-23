@@ -176,11 +176,28 @@ module.exports = function(grunt) {
 
                     },
                     out: '<%= buildDir %>/assets/js/zza.js',
-                    name: 'Zza'
+                    name: 'Zza',
 
-                },
-                preserveLicenseComments : false,
-                optimize: "uglify"
+                    preserveLicenseComments: true,
+                    optimize: "none"
+                }
+            },
+            compileMin: {
+
+                options: {
+                    baseUrl: "../src",
+                    paths   :
+                    {
+                        // Configure alias to full paths; relative to `baseURL`
+                        'utils' : 'mindspace/utils'
+
+                    },
+                    out: '<%= buildDir %>/assets/js/zza.js',
+                    name: 'Zza',
+
+                    preserveLicenseComments: false,
+                    optimize: "uglify"
+                }
             }
         }
 
@@ -205,6 +222,19 @@ module.exports = function(grunt) {
         'copy:dev_boot'         // copy the dev boot.js file (which let's RequireJS dynamically load the AMDs )
     ]);
 
+    grunt.registerTask( "qa", [
+
+// Since much of the current structure is the SAME as a production build...
+//        'copy:build_assets',
+//        'copy:build_vendorjs',
+//        'copy:index',
+
+        'clean:src',
+        "requirejs:compile",    // concatenate and do NOT minify all the Zza source AMDs
+        'copy:prod_boot'        // copy the production boot.js file (which does NOT use require.config())
+    ]);
+
+
     grunt.registerTask( "prod", [
 
 // Since much of the current structure is the SAME as a production build...
@@ -213,10 +243,9 @@ module.exports = function(grunt) {
 //        'copy:index',
 
         'clean:src',
-        "requirejs",            // concatenate and minify all the Zza source AMDs
+        "requirejs:compileMin", // concatenate and minify all the Zza source AMDs
         'copy:prod_boot'        // copy the production boot.js file (which does NOT use require.config())
     ]);
-
 
     function stripBanner( src ) {
         var m = [
