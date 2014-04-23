@@ -33,7 +33,7 @@
     )
     .ready("ALL", function()
     {
-        // All application code is concat/uglified in 1 file:  `quizzler.js`
+        // All application code is concat/uglified in 1 file:  `zza.js`
 
         require( [ "Zza" ], function( app )
         {
