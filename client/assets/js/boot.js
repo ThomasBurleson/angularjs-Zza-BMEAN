@@ -14,7 +14,7 @@
          *  Load vendor libraries
          */
 
-          { angular      : "vendor/angular/angular.js"                     }
+        { angular      : "vendor/angular/angular.js"                     }
         , { ngSanitize   : "vendor/angular-sanitize/angular-sanitize.js"   }
         , { ngAnimate    : "vendor/angular-animate/angular-animate.js"   }
         , { uiRoute      : "vendor/angular-ui-router/release/angular-ui-router.js" }
@@ -30,25 +30,25 @@
 
         , { require      : "vendor/requirejs/require.js"                   }
     )
-    .ready("ALL", function()
-    {
-
-        // Development-mode uses RequireJS to load the Class definitions (on-demand)
-
-        require.config ({
-            appDir  : '',
-            baseUrl : './src',
-            paths   :
-            {
-                'utils' : 'mindspace/utils'
-            }
-        });
-
-        require( [ "Zza" ], function( app )
+        .ready("ALL", function()
         {
-            // Application has bootstrapped and started...
-        });
 
-    });
+            // Development-mode uses RequireJS to load the Class definitions (on-demand)
+
+            require.config ({
+                appDir  : '',
+                baseUrl : './src',
+                paths   :
+                {
+                    'utils' : 'mindspace/utils'
+                }
+            });
+
+            require( [ "Zza" ], function( app )
+            {
+                // Application has bootstrapped and started...
+            });
+
+        });
 
 }( window.head ));

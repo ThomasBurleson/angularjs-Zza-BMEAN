@@ -12,21 +12,30 @@
 
       // Pre-load these for splash-screen progress bar...
 
-      { require    : "./vendor/requirejs/require.js",                  size: "80196"   },
-      { underscore : "./vendor/underscore/underscore.js",              size: "43568"   },
+          { angular      : "vendor/angular/angular.js"                     }
+        , { ngSanitize   : "vendor/angular-sanitize/angular-sanitize.js"   }
+        , { ngAnimate    : "vendor/angular-animate/angular-animate.js"     }
+        , { uiRoute      : "vendor/angular-ui-router/release/angular-ui-router.js" }
+        , { uibootstrap  : "vendor/angular-bootstrap/ui-bootstrap-tpls.js" }
 
-      { angular    : "./vendor/angular/angular.js",                    size: "551057"  },
-      { ngRoute    : "./vendor/angular-route/angular-route.js",        size: "30052"   },
-      { ngSanitize : "./vendor/angular-sanitize/angular-sanitize.js",  size: "19990"   },
+        , { jquery       : "vendor/jquery/jquery.min.js"                   }
+        , { toastr       : "vendor/toastr/toastr.js"                       }
 
-      { quizzler   : "./assets/js/quizzler.js"                                         }
+        , { breeze_debug : "vendor/breeze/breeze.debug.js"                 }
+        , { breeze_ng    : "vendor/breeze/breeze.angular.js"               }
+        , { breeze_mongo : "vendor/breeze/breeze.dataservice.mongo.js"     }
+        , { breeze_meta  : "vendor/breeze/breeze.metadata-helper.js"       }
+
+        , { require      : "vendor/requirejs/require.js"                   }
+
+        , { zza          : "./assets/js/zza.js"                            }
 
     )
     .ready("ALL", function()
     {
         // All application code is concat/uglified in 1 file:  `quizzler.js`
 
-        require( [ "main" ], function( app )
+        require( [ "Zza" ], function( app )
         {
             // Application has bootstrapped and started...
         });

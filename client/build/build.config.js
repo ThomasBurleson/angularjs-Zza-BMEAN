@@ -3,40 +3,26 @@
  */
 module.exports = {
 
-    devDir      : "../client",
-    buildDir    : "../bin",
-    compileDir  : "../deploy",
+    devDir      : "../",
+    buildDir    : "../",
 
     appFiles: {
 
         js: [
-            "../client/src/**/*.js"
-        ],
-
-        jsunit: [
-            "../client/test/**/*Spec.js",
-            "../client/test/*.js"
-        ],
-
-        jsscenario: [
-            "../client/test/**/*Scenario.js",
-            "../client/test/*.js"
-        ],
-
-        templates : [
-            "../client/src/assets/views/**/*.tpl.html"
+            "../src/**/*.js"
         ],
 
         html: [
-            "../client/src/index.html"
+            "../index.html"
         ],
 
         css : [
-            "../client/assets/css/bootstrap.css",
-            "../client/assets/css/monokai.css"
-        ],
-
-        less: "../client/src/assets/less/main.less"
+              "../assets/css/bootstrap.min.css"
+            , "../assets/css/bootstrap-responsive.min.css"
+            , "../vendor/toastr/toastr.css"
+            , "../assets/css/styles.css"
+            , "../assets/css/animations.css"
+        ]
     },
 
     /**
@@ -57,32 +43,18 @@ module.exports = {
      */
     vendorFiles: {
         js: [
-            "../client/vendor/angular/angular.js",
-            "../client/vendor/angular-route/angular-route.js",
-            "../client/vendor/angular-sanitize/angular-sanitize.js",
-            "../client/vendor/headjs-notify/src/load.js",
-            "../client/vendor/require/require.js",
-            "../client/vendor/requirejs-text/text.js",
-            "../client/vendor/underscore.js",
-            "../client/vendor/highlightjs/highlight.pack.js"
+            "../vendor/angular/angular.js",
+            "../vendor/angular-route/angular-route.js",
+            "../vendor/angular-sanitize/angular-sanitize.js",
+            "../vendor/headjs-notify/src/load.js",
+            "../vendor/require/require.js",
+            "../vendor/requirejs-text/text.js",
+            "../vendor/underscore.js",
+            "../vendor/highlightjs/highlight.pack.js"
         ],
         css: [
         ]
-    },
-
-    /**
-     * Defines server ports for local, static web server and karma servers.
-     */
-    ports: {
-        webServer: {
-            build : 8890,
-            compile: 8888
-        },
-        karma: {
-            unit: {
-                runnerPort: 9101,
-                port: 9877
-            }
-        }
     }
+
+
 };

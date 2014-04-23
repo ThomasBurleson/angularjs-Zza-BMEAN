@@ -48,7 +48,7 @@ module.exports = function(grunt) {
          */
         clean: {
             src: [
-                '<%= buildDir %>'
+                '<%= buildDir %>/assets/js/*.js'
             ],
             hooks: [
             ],
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
                     }
                 ]
             },
-            build_appjs: {
+            raw_src: {
                 files: [
                     {
                         src: [ '**/*.js' ],
@@ -90,7 +90,7 @@ module.exports = function(grunt) {
                     }
                 ]
             },
-            /*
+
             prod_boot: {
                 files: [
                     {
@@ -108,7 +108,7 @@ module.exports = function(grunt) {
                     }
                 ]
             },
-            */
+
             build_vendorjs: {
                 files: [
                     {
@@ -161,61 +161,26 @@ module.exports = function(grunt) {
 
 
         /**
-         * `jshint` defines the rules of our linter as well as which files we should check. This file, all javascript
-         * sources, and all our unit tests are linted based on the policies listed in `options`. But we can also
-         * specify exclusionary patterns by prefixing them with an exclamation point (!); this is useful when code comes
-         * from a third party but is nonetheless inside `src/`.
-         */
-        jshint: {
-            src: [
-                '<%= appFiles.js %>'
-            ],
-            test: [
-                '<%= appFiles.jsunit %>'
-            ],
-            scenario: [
-                '<%= appFiles.jsscenario %>'
-            ],
-            gruntfile: [
-                'Gruntfile.js'
-            ],
-            options: {
-                curly: true,
-                immed: true,
-                newcap: true,
-                noarg: true,
-                sub: true,
-                boss: true,
-                eqnull: true
-            },
-            globals: {}
-        },
-
-        /**
          * Minifies RJS files and makes it production ready
          * Build files are minified and encapsulated using RJS Optimizer plugin
          */
         requirejs: {
             compile: {
-                /*
+
                 options: {
-                    baseUrl: "../client/src",
+                    baseUrl: "../src",
                     paths   :
                     {
                         // Configure alias to full paths; relative to `baseURL`
-
-                        'auth'         : './???/authentication',
-                        '????'         : './???/????',
-                        'utils'        : './???/utils'
+                        'utils' : 'mindspace/utils'
 
                     },
-                    out: '<%= buildDir %>/assets/js/???.js',
-                    name: 'main'
+                    out: '<%= buildDir %>/assets/js/zza.js',
+                    name: 'Zza'
 
                 },
                 preserveLicenseComments : false,
                 optimize: "uglify"
-                */
             }
         }
 
@@ -228,22 +193,28 @@ module.exports = function(grunt) {
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     grunt.registerTask("dev", [
-        'clean:src',
-        'copy:build_assets',
-        'copy:build_appjs',
-        'copy:build_vendorjs',
-        //'copy:dev_boot',
-        'copy:index'
 
+// Since all current structure is the SAME as a development build...
+//
+//        'copy:build_assets',
+//        'copy:build_vendorjs',
+//        'copy:index',
+//        'copy:raw_src',
+
+        'clean:src',
+        'copy:dev_boot'         // copy the dev boot.js file (which let's RequireJS dynamically load the AMDs )
     ]);
 
     grunt.registerTask( "prod", [
+
+// Since much of the current structure is the SAME as a production build...
+//        'copy:build_assets',
+//        'copy:build_vendorjs',
+//        'copy:index',
+
         'clean:src',
-        'copy:build_assets',
-        'copy:build_vendorjs',
-        //'copy:prod_boot',
-        'copy:index',
-        "requirejs",
+        "requirejs",            // concatenate and minify all the Zza source AMDs
+        'copy:prod_boot'        // copy the production boot.js file (which does NOT use require.config())
     ]);
 
 
