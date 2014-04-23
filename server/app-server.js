@@ -13,7 +13,10 @@ var express        = require('express')
     , errorHandler = require('./zza/errorHandler')
 
     , port         = process.env["PORT"] || 8080
-    , app          = express();
+    , app          = express()
+
+    , workingDir   = process.cwd();
+    // , workingDir   = process.cwd() + '/client';      enable for Heroku deployment...
 
     app.use( favicon()                  );
     app.use( logger('dev')              );
@@ -25,7 +28,7 @@ var express        = require('express')
     breezeRoutes.configure( app );                // Configure both breeze-specific routes for REST API
 
     // Support static file content
-    app.use( fileServer( process.cwd() ));
+    app.use( fileServer( workingDir ));
 
     app.use( errorHandler );
 
@@ -35,7 +38,7 @@ var express        = require('express')
     // Configuration logging
     console.log('env = '+ app.get('env') +
         '\n__dirname = ' + __dirname  +
-        '\nprocess.cwd = ' + process.cwd() );
+        '\nprocess.cwd = ' + workingDir );
     console.log('\nListening on port '+ port);
 
 

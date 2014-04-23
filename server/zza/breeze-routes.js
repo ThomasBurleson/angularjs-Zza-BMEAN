@@ -6,7 +6,8 @@ module.exports = {
 };
 
 var bmongo   = require('breeze-mongodb')
-  , database = require('./database' );
+  , database = require('./database');              // enable to use localhost Mongo database
+//  , database = require('./remote-database' );    // enable to use cloud, MongoHQ database
 
 /**
  * Configure Express app with get()/post() Breeze route handlers
