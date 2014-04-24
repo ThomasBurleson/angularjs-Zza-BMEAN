@@ -64,21 +64,31 @@ You only have to install this database once.
 
 1. Open a command prompt window.
 
-2. Navigate to the *Zza-Node-Mongo* directory.
+2. Navigate to the *Zza-Node-Mongo* directory; aka <projectDirectory>.
 
-3. Use npm to install the following three modules:
-<pre style="margin-left: 2em">
-npm install mongodb
-npm install express
-npm install breeze-mongodb
-</pre>
 
-Confirm that all of them ran without error (warnings are ok). You can close this window when you're done.
+```text
+cd <projectDirectory>/server
+npm update
+```
 
-You only install these modules once.
+This should update/install all the NPM modules needed for the NodeJS, Breeze, Mongo stack.
+
+```text
+cd <projectDirectory>/client/build
+
+rem Now update the NPM modules for Grunt
+npm update
+
+rem Now use Bower to install/update the AngularJS vendor libraries
+bower update
+```
+
+These will install all the vendor libraries for the AngularJS client. And the NPM modules required for the optional Grunt build tasks.
+
 
 ### Start the servers
-*Every time you run the application* you must first launch **two** servers: the MongoDB server and the Zza application's node/express server. If you are using WebStorm IDEA, here are two snapshots to make these tasks trivial:
+*Every time you run the application* you must first launch **two** servers: the MongoDB server and the Zza application's node/express Server. If you are using WebStorm IDEA, here are two snapshots to make these tasks trivial:
 
 > Configure WebStorm External tool "Start MongoDb Server": <br/><br>![zza-webstorm-start_mongo](https://cloud.githubusercontent.com/assets/210413/2668242/4782bb4a-c0b7-11e3-982c-ddc688ee72a4.png)
 
