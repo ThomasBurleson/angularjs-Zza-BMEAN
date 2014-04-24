@@ -1,48 +1,69 @@
 /**
- *  Use aysnc script loader, configure the application module (for AngularJS)
+ *  Use async script loader, configure the application module (for AngularJS)
  *  and initialize the application ( which configures routing )
  *
  *  @author Thomas Burleson
  */
 
- (function( window, head ) {
+(function( head ) {
     "use strict";
+
+    var $bar = null;
 
     head.js(
 
-      // Pre-load these for splash-screen progress bar...
+        /**
+         *  Load vendor libraries
+         */
 
-          { angular      : "vendor/angular/angular.js"                     }
-        , { ngSanitize   : "vendor/angular-sanitize/angular-sanitize.js"   }
-        , { ngAnimate    : "vendor/angular-animate/angular-animate.js"     }
-        , { uiRoute      : "vendor/angular-ui-router/release/angular-ui-router.js" }
-        , { uibootstrap  : "vendor/angular-bootstrap/ui-bootstrap-tpls.js" }
+          { angular      : "vendor/angular/angular.js"                             , size : "803501" }
+        , { ngSanitize   : "vendor/angular-sanitize/angular-sanitize.min.js"       , size : "4317"   }
+        , { ngAnimate    : "vendor/angular-animate/angular-animate.js"             , size : "80669"  }
+        , { uiRoute      : "vendor/angular-ui-router/release/angular-ui-router.js" , size : "116478" }
+        , { uibootstrap  : "vendor/angular-bootstrap/ui-bootstrap-tpls.js"         , size : "122558" }
 
-        , { jquery       : "vendor/jquery/jquery.min.js"                   }
-        , { toastr       : "vendor/toastr/toastr.js"                       }
+        , { jquery       : "vendor/jquery/jquery.min.js"                           , size : "83606"  }
+        , { toastr       : "vendor/toastr/toastr.js"                               , size : "7734"   }
 
-        , { breeze_debug : "vendor/breeze/breeze.debug.js"                 }
-        , { breeze_ng    : "vendor/breeze/breeze.angular.js"               }
-        , { breeze_mongo : "vendor/breeze/breeze.dataservice.mongo.js"     }
-        , { breeze_meta  : "vendor/breeze/breeze.metadata-helper.js"       }
+        , { breeze_debug : "vendor/breeze/breeze.debug.js"                         , size : "617110" }
+        , { breeze_ng    : "vendor/breeze/breeze.angular.js"                       , size : "5536"   }
+        , { breeze_mongo : "vendor/breeze/breeze.dataservice.mongo.js"             , size : "8825"   }
+        , { breeze_meta  : "vendor/breeze/breeze.metadata-helper.js"               , size : "16463"  }
 
-        , { require      : "vendor/requirejs/require.js"                   }
+        , { require      : "vendor/requirejs/require.js"                           , size : "82718"  }
 
-        , { zza          : "./assets/js/zza.js"                            }
-
+        , { zza          : "./assets/js/zza.js"                                    , size : "32000"  }
     )
-    .ready("ALL", function()
-    {
-        // All application code is concat/uglified in 1 file:  `zza.js`
+        .notify( function(name, size, loaded, total) {
+            var percentDone;
 
-        require( [ "Zza" ], function( app )
+            if (!(total != null))     return;
+            if (name === 'jquery')    $bar = $('.progress .bar');
+
+            percentDone = Math.floor(loaded / total * 100);
+            $bar.width("" + percentDone + "%");
+        })
+        .ready("ALL", function()
         {
-            // Application has bootstrapped and started...
+            $bar.delay( 600 )
+                .promise()
+                .done( function() {
+                    $( '#startup' )
+                        .fadeOut( 200 )
+                        .promise()
+                        .done( function()
+                        {
+                            // All application code is concat/uglified in 1 file:  `zza.js`
+
+                            require( [ "Zza" ], function( app )
+                            {
+                                // Application has bootstrapped and started...
+                            });
+
+                            $( '#startup').remove();
+                            $bar = null;
+                        });
+                });
         });
 
-
-    });
-
-
-
-}( window, head ));
+}( window.head ));

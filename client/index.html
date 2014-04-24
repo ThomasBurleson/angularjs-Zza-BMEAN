@@ -19,15 +19,34 @@
     </head>
 
 
-    <body class="ng-cloak" data-ng-controller="SessionController as vm" >
+    <body >
 
-        <div ui-view="header"></div>
-        <div ui-view="content" class="content animated">
-            <!--
-                Dynamic content area for the SPA
-            -->
+        <div id="viewport" class="ng-cloak" data-ng-controller="SessionController as vm" >
+
+            <div ui-view="header"></div>
+            <div ui-view="content" class="content animated">
+                <!--
+                    Dynamic content area for the SPA
+                -->
+            </div>
+            <div ui-view="footer"></div>
+
         </div>
-        <div ui-view="footer"></div>
+
+
+        <div id="splash">
+            <!-- Startup loader splash -->
+            <div id="startup" >
+                <div id="logo_product"></div>
+                <div class="loading">
+                    <div class="progress" >
+                        <div class="bar"></div>
+                        <p>Please wait!</p>
+                        <h3>Loading...</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <script src="./vendor/headjs-notify/src/load.js"></script>
         <script src="./assets/js/boot.js"></script>
