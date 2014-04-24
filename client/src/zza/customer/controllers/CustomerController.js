@@ -3,7 +3,7 @@
 
     define( [], function()
     {
-        return [ 'customer.state', 'customerService', 'util', '$scope', CustomerController];
+        return [ 'session', 'customerService', 'util', '$scope', CustomerController];
     });
 
     // **********************************************************
@@ -14,7 +14,7 @@
      * CustomerController provides a view model associated with the `customer.html` view
      * and its `customer.*.html` sub-view templates
      */
-    function CustomerController(customerState, customerService, util, $scope)
+    function CustomerController( session, customerService, util, $scope )
     {
         var $log               = util.$log.getInstance("CustomerController"),
             availableCustomers = [ ],
@@ -82,9 +82,9 @@
 
             vm.customers = availableCustomers = customers;
 
-            if ( customerState.selectedCustomerId )
+            if ( session.customer )
             {
-                selectCustomer(findCustomerByID( customerState.selectedCustomerId ));
+                selectCustomer(findCustomerByID( customers.id ));
 
             }  else {
 
@@ -104,7 +104,7 @@
         }
 
         /**
-         * Keep 'vm.selectedCustomerId' in a 'customerState' ngValue object
+         * Copy the 'vm.selectedCustomer' to a 'session' object
          * where it survives creation and destruction of this controller
          */
         function selectCustomer(customer)
@@ -114,7 +114,7 @@
             $log.debug( "selectCustomer({id})", customer );
 
             vm.selectedCustomer = customer;
-            customerState.selectedCustomerId = customer && customer.id;
+            session.customer    = customer ;
 
             showLoading("orders").then( getCustomerOrders )
                                  .then( hideLoading       );
@@ -171,7 +171,7 @@
          */
         function findCustomerByID( id )
         {
-            if ( !id ) id = customerState.selectedCustomerId;
+            if ( !id ) id = (session.customer ? session.customer.id : null);
 
             $log.debug( "filterByID( `{0}` )",[id] );
 

@@ -19,7 +19,6 @@
             // Need to preserve Customer state beyond controller's lifetime
 
             angular.module( moduleName, [ ] )
-                .value(      'customer.state'       , {}                 )
                 .factory(    'customerService'      , CustomerService    )
                 .controller( 'CustomerController'   , CustomerController );
 
