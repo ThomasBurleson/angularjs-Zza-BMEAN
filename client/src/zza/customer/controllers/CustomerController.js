@@ -21,8 +21,8 @@
             vm                 = this;
 
             vm.customers          = availableCustomers;
+            vm.selectedCustomer   = session.customer;
             vm.orderHeaders       = [];
-            vm.selectedCustomer   = null;
 
             vm.isLoadingCustomers = false;
             vm.isLoadingOrders    = false;

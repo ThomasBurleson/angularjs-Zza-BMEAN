@@ -52,6 +52,8 @@ This version will demonstrate the UI-Router and AngularJS transitions/animations
 
 ## Install and use
 
+This repository represents a full MEAN stack; where both the client and the server and database must be configured. Libraries must be installed for the client and ser applications. Since the App-Server will handle RESTful web service requests and route appropriate commands to query the Mongo `zza` database, Mongo must be installed and the zza database configured properly.
+
 ### Extract the database
 
 Extract the Zza application's MongoDB database in *zza-mongo-database.zip* to your MongoDB data directory.
@@ -85,7 +87,7 @@ bower update
 ```
 
 These will install all the vendor libraries for the AngularJS client. And the NPM modules required for the optional Grunt build tasks.
-
+You only have to install these modules and vendor libraries once.
 
 ### Start the servers
 *Every time you run the application* you must first launch **two** servers: the MongoDB server and the Zza application's node/express Server. If you are using WebStorm IDEA, here are two snapshots to make these tasks trivial:
