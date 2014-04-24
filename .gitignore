@@ -1,7 +1,16 @@
 .DS_Store
-client/vendor
+
+client/vendor/a*
+client/vendor/h*
+client/vendor/j*
+client/vendor/r*
+client/vendor/s*
+client/vendor/t*
+
 client/build/node_modules
 database/zza
 server/node_modules
 
 /client/.idea/
+
+/client/assets/js/zza.js
