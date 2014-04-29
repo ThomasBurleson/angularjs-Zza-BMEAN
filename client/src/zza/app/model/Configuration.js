@@ -23,8 +23,8 @@
             debug               : true,
             devServiceName      : 'breeze/Dev',
             templates           : {
-                menuURL    : './src/zza/menu/tmpl/menu.{0}.html',              // MenuController
-                choiceURL  : './src/zza/order/tmpl/orderItemOption{0}.html'    // OptionTypes
+                menuURL    : './src/zza/menu/views/menu.{0}.html',              // MenuController
+                choiceURL  : './src/zza/order/views/orderItemOption{0}.html'    // OptionTypes
             },
             productImageBasePath: './assets/images/products/',
             productUnknownImage : './assets/images/products/unknown.jpg',

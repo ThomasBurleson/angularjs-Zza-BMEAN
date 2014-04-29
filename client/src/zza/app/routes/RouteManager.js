@@ -22,13 +22,13 @@
                 url: '',
                 views: {
                     'header': {
-                        templateUrl: 'src/zza/app/tmpl/header.html'
+                        templateUrl: 'src/zza/app/views/header.html'
                     },
                     'content': {
-                        templateUrl: 'src/zza/app/tmpl/welcome.html'
+                        templateUrl: 'src/zza/app/views/welcome.html'
                     },
                     'footer': {
-                        templateUrl: 'src/zza/app/tmpl/footer.html'
+                        templateUrl: 'src/zza/app/views/footer.html'
                     }
                 }
             })
@@ -37,7 +37,7 @@
                     url : '/welcome',
                     views : {
                         'content@' : {
-                            templateUrl: 'src/zza/app/tmpl/home.html'
+                            templateUrl: 'src/zza/app/views/home.html'
                         }
                     }
                 })
@@ -46,7 +46,7 @@
                     url : '/about',
                     views : {
                         'content@' : {
-                            templateUrl: 'src/zza/app/tmpl/about.html'
+                            templateUrl: 'src/zza/app/views/about.html'
                         }
                     }
                 })
@@ -55,7 +55,7 @@
                     url: '/customer',
                     views : {
                         'content@' : {
-                            templateUrl: 'src/zza/customer/tmpl/customer.html'
+                            templateUrl: 'src/zza/customer/views/customer.html'
 
                         }
                     }
@@ -67,10 +67,10 @@
                     url : '/order',
                     views : {
                         'content@' : {
-                            templateUrl: 'src/zza/order/tmpl/order.html'
+                            templateUrl: 'src/zza/order/views/order.html'
                         },
                         'sidebar@app.order' : {
-                            templateUrl: 'src/zza/order/tmpl/orderSidebar.html'
+                            templateUrl: 'src/zza/order/views/orderSidebar.html'
                         }
                     }
                 })
@@ -81,7 +81,7 @@
                         url : '/:orderId/:productType/:orderItemId',
                         views : {
                             'content@app.order' : {
-                                templateUrl : 'src/zza/order/tmpl/orderItem.html'
+                                templateUrl : 'src/zza/order/views/orderItem.html'
                             }
                         }
                     })
@@ -92,7 +92,7 @@
                         url : '/cart',
                         views : {
                             'content@app.order' : {
-                                templateUrl : 'src/zza/order/tmpl/cart.html'
+                                templateUrl : 'src/zza/order/views/cart.html'
                             }
                         }
                     })
@@ -105,7 +105,7 @@
                         url: '/:productType',
                         views : {
                             'content@app.order' : {
-                                templateUrl: 'src/zza/menu/tmpl/menu.html'
+                                templateUrl: 'src/zza/menu/views/menu.html'
                             }
                         }
                     })
@@ -116,7 +116,7 @@
                             url : '/:productId',
                             views : {
                                 'content@app.order' : {
-                                    templateUrl : 'src/zza/order/tmpl/orderItem.html'
+                                    templateUrl : 'src/zza/order/views/orderItem.html'
                                 }
                             }
                         });
