@@ -4,17 +4,10 @@ module.exports = function(grunt) {
      * Load required Grunt tasks. These are installed based on the versions listed
      * in `package.json` when you do `npm install` in this directory.
      */
-    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
-
-    /**
-     * Load in our build configuration file.
-     */
-    var userConfig = require('./build.config.js');
 
     /**
      * This is the configuration object Grunt uses to give each plugin its
@@ -22,35 +15,12 @@ module.exports = function(grunt) {
      */
     var taskConfig = {
 
-        /**
-         * We read in our `package.json` file so we can access the package name and version. It's already there, so
-         * we don't repeat ourselves here.
-         */
-        pkg: grunt.file.readJSON("package.json"),
-
-        /**
-         * The banner is the comment that is placed at the top of our compiled source files. It is first processed
-         * as a Grunt template, where the `<%=` pairs are evaluated based on this very configuration object.
-         */
-        meta: {
-            banner: '/**\n' +
-                ' * @appName    <%= pkg.name %>\n' +
-                ' * @version    <%= pkg.version %>\n' +
-                ' * @date       <%= grunt.template.today("yyyy-mm-dd") %>\n' +
-                ' * @homepage   <%= pkg.homepage %>\n' +
-                ' * @copyright  <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
-                ' * Licensed <%= pkg.licenses.type %> <<%= pkg.licenses.url %>>\n' +
-                ' */\n'
-        },
-
          /**
          * The directories to delete when `grunt clean` is executed.
          */
         clean: {
             src: [
-                '<%= buildDir %>/assets/js/*.js'
-            ],
-            hooks: [
+                '../assets/js/*.js'
             ],
             options: {
                 force: true
@@ -62,40 +32,12 @@ module.exports = function(grunt) {
          * (images, fonts, etc.) and javascripts into `buildDir`, and then to copy the assets to `compileDir`.
          */
         copy: {
-            index: {
-                files: [
-                    {
-                        src: '<%= devDir %>/index.html',
-                        dest: '<%= buildDir %>/index.html'
-                    }
-                ]
-            },
-            build_assets: {
-                files: [
-                    {
-                        src: [ '**', '!less/**' ],
-                        cwd: '<%= devDir %>/assets',
-                        dest: '<%= buildDir %>/assets/',
-                        expand: true
-                    }
-                ]
-            },
-            raw_src: {
-                files: [
-                    {
-                        src: [ '**/*.js' ],
-                        cwd: '<%= devDir %>/src',
-                        dest: '<%= buildDir %>/src/',
-                        expand: true
-                    }
-                ]
-            },
 
             prod_boot: {
                 files: [
                     {
                         src: './requirejs/bootstrap_prod.js',
-                        dest: '<%= buildDir %>/assets/js/boot.js',
+                        dest: '../assets/js/boot.js',
                         expand: false
                     }
                 ]
@@ -104,61 +46,12 @@ module.exports = function(grunt) {
                 files: [
                     {
                         src: './requirejs/bootstrap_dev.js',
-                        dest: '<%= buildDir %>/assets/js/boot.js'
-                    }
-                ]
-            },
-
-            build_vendorjs: {
-                files: [
-                    {
-                        src: [ '**' ],
-                        cwd: '<%= devDir %>/vendor',
-                        dest: '<%= buildDir %>/vendor',
-                        expand: true
-                    }
-                ]
-            },
-            compile: {
-                files: [
-                    {
-                        src: [ '**' ],
-                        cwd: '<%= buildDir %>/assets',
-                        dest: '<%= compileDir %>/assets',
-                        expand: true
-                    },
-                    {
-                        src: [ '**' ],
-                        dest: '<%= compileDir %>/vendor',
-                        cwd: '<%= buildDir %>/vendor',
-                        expand: true
+                        dest: '../assets/js/boot.js'
                     }
                 ]
             }
+
         },
-
-        /**
-         * `grunt concat` concatenates multiple source files into a single file.
-         */
-        concat: {
-
-            /**
-             * The `source` target is the concatenation of our application source code and all specified vendor
-             * source code into a single file.
-             */
-            source: {
-                /*
-                options: {
-                    banner: '<%= meta.banner %>'
-                },
-                src: [
-                    '<%= buildDir %>???.js'
-                ],
-                dest: '<%= buildDir %>???.js'
-                */
-            }
-        },
-
 
         /**
          * Minifies RJS files and makes it production ready
@@ -168,23 +61,6 @@ module.exports = function(grunt) {
             compile: {
 
                 options: {
-                    baseUrl: "../src",
-                    paths   :
-                    {
-                        // Configure path to `mindspace.utils` module/library [ contains multiple defines(...) ]
-                        'mindspace.utils' : '../vendor/angular-logDecorator/release/amd/angular-logDecorator'
-
-                    },
-                    bundles: {
-                        'mindspace.utils': [
-                            // List external AMDs that are known
-                            'mindspace/logger/ExternalLogger',
-                            'mindspace/utils/supplant',
-                            'mindspace/utils/makeTryCatch'
-                        ]
-                    },
-                    out: '<%= buildDir %>/assets/js/zza.js',
-                    name: 'Zza',
 
                     preserveLicenseComments: true,
                     optimize: "none"
@@ -193,23 +69,6 @@ module.exports = function(grunt) {
             compileMin: {
 
                 options: {
-                    baseUrl: "../src",
-                    paths   :
-                    {
-                        // Configure path to `mindspace.utils` module/library [ contains multiple defines(...) ]
-                        'mindspace.utils' : '../vendor/angular-logDecorator/release/amd/angular-logDecorator'
-
-                    },
-                    bundles: {
-                        'mindspace.utils': [
-                            // List external AMDs that are known
-                            'mindspace/logger/ExternalLogger',
-                            'mindspace/utils/supplant',
-                            'mindspace/utils/makeTryCatch'
-                        ]
-                    },
-                    out: '<%= buildDir %>/assets/js/zza.js',
-                    name: 'Zza',
 
                     preserveLicenseComments: false,
                     optimize: "uglify"
@@ -219,32 +78,44 @@ module.exports = function(grunt) {
 
     };
 
-    grunt.initConfig(grunt.util._.extend(taskConfig, userConfig));
+    /**
+     * Common options for the grunt-requireJS processes
+     */
+    var commonOptions = {
+        baseUrl: "../src",
+        paths   :
+        {
+            // Configure path to `mindspace.utils` module/library [ contains multiple defines(...) ]
+            'mindspace.utils' : '../vendor/angular-logDecorator/release/amd/angular-logDecorator'
+
+        },
+        bundles: {
+            'mindspace.utils': [
+                // List external AMDs that are known
+                'mindspace/logger/ExternalLogger',
+                'mindspace/utils/supplant',
+                'mindspace/utils/makeTryCatch'
+            ]
+        },
+        out: '../assets/js/zza.js',
+        name: 'Zza'
+    };
+
+    grunt.util._.extend( taskConfig.requirejs.compile.options   , commonOptions );
+    grunt.util._.extend( taskConfig.requirejs.compileMin.options, commonOptions );
+
+    grunt.initConfig( taskConfig );
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Register Tasks
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     grunt.registerTask("dev", [
-
-// Since all current structure is the SAME as a development build...
-//
-//        'copy:build_assets',
-//        'copy:build_vendorjs',
-//        'copy:index',
-//        'copy:raw_src',
-
         'clean:src',
         'copy:dev_boot'         // copy the dev boot.js file (which let's RequireJS dynamically load the AMDs )
     ]);
 
     grunt.registerTask( "qa", [
-
-// Since much of the current structure is the SAME as a production build...
-//        'copy:build_assets',
-//        'copy:build_vendorjs',
-//        'copy:index',
-
         'clean:src',
         "requirejs:compile",    // concatenate and do NOT minify all the Zza source AMDs
         'copy:prod_boot'        // copy the production boot.js file (which does NOT use require.config())
@@ -252,24 +123,8 @@ module.exports = function(grunt) {
 
 
     grunt.registerTask( "prod", [
-
-// Since much of the current structure is the SAME as a production build...
-//        'copy:build_assets',
-//        'copy:build_vendorjs',
-//        'copy:index',
-
         'clean:src',
         "requirejs:compileMin", // concatenate and minify all the Zza source AMDs
         'copy:prod_boot'        // copy the production boot.js file (which does NOT use require.config())
     ]);
-
-    function stripBanner( src ) {
-        var m = [
-                '(?:.*\\/\\/.*\\r?\\n)*\\s*',   // Strip // ... leading banners.
-                '\\/\\*[\\s\\S]*?\\*\\/'        // Strips all /* ... */ block comment banners.
-            ],
-            re = new RegExp('^\\s*(?:' + m.join('|') + ')\\s*', '');
-
-        return src.replace(re, '', "gm");
-    };
 };
