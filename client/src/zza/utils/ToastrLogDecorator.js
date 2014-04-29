@@ -6,7 +6,7 @@
     /**
      * Register the class with RequireJS.
      */
-    define( [ 'utils/supplant' ], function ( supplantFn )
+    define( [ 'mindspace/utils/supplant' ], function ( supplantFn )
     {
         supplant = supplantFn;
 

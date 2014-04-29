@@ -2,7 +2,7 @@
     "use strict";
 
     define( [
-          'mindspace/utils/logger/ExternalLogger'
+          'mindspace/logger/ExternalLogger'
 
         , 'zza/app/routes/RouteManager'
         , 'zza/app/routes/RouteLogger'

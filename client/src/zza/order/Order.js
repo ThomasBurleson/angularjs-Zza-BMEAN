@@ -2,7 +2,7 @@
     "use strict";
 
     define( [
-          'mindspace/utils/logger/ExternalLogger'
+          'mindspace/logger/ExternalLogger'
 
         , 'zza/orm/ORM'
 

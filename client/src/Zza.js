@@ -2,8 +2,7 @@
     "use strict";
 
     define([
-              'mindspace/utils/logger/ExternalLogger'
-            , 'mindspace/utils/logger/LogDecorator'
+              'mindspace/logger/ExternalLogger'
             , 'zza/utils/ToastrLogDecorator'
 
             , 'zza/app/Application'
@@ -14,7 +13,6 @@
         ],
         function (
               $log
-            , LogDecorator
             , ToastrLogDecorator
 
             , Application
@@ -29,6 +27,8 @@
                    , 'breeze.angular'
                    , 'ui.router'
                    , 'ui.bootstrap'
+                   , 'mindspace.logDecorator'
+
                    , Application             // Zza-defined NG modules...
                    , Customers
                    , Products
@@ -51,7 +51,6 @@
              */
 
             app = angular.module( appName, dependencies)
-                         .config( LogDecorator       )
                          .config( ToastrLogDecorator )
                          .run(    onStartup          );
 

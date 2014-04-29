@@ -41,7 +41,7 @@
             if (name === 'jquery')    $bar = $('.progress .bar');
 
             percentDone = Math.floor(loaded / total * 100);
-            $bar.width("" + percentDone + "%");
+            $bar && $bar.width("" + percentDone + "%");
         })
         .ready("ALL", function()
         {

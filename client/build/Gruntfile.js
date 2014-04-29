@@ -171,9 +171,17 @@ module.exports = function(grunt) {
                     baseUrl: "../src",
                     paths   :
                     {
-                        // Configure alias to full paths; relative to `baseURL`
-                        'utils' : 'mindspace/utils'
+                        // Configure path to `mindspace.utils` module/library [ contains multiple defines(...) ]
+                        'mindspace.utils' : '../vendor/angular-logDecorator/release/amd/angular-logDecorator'
 
+                    },
+                    bundles: {
+                        'mindspace.utils': [
+                            // List external AMDs that are known
+                            'mindspace/logger/ExternalLogger',
+                            'mindspace/utils/supplant',
+                            'mindspace/utils/makeTryCatch'
+                        ]
                     },
                     out: '<%= buildDir %>/assets/js/zza.js',
                     name: 'Zza',
@@ -188,9 +196,17 @@ module.exports = function(grunt) {
                     baseUrl: "../src",
                     paths   :
                     {
-                        // Configure alias to full paths; relative to `baseURL`
-                        'utils' : 'mindspace/utils'
+                        // Configure path to `mindspace.utils` module/library [ contains multiple defines(...) ]
+                        'mindspace.utils' : '../vendor/angular-logDecorator/release/amd/angular-logDecorator'
 
+                    },
+                    bundles: {
+                        'mindspace.utils': [
+                            // List external AMDs that are known
+                            'mindspace/logger/ExternalLogger',
+                            'mindspace/utils/supplant',
+                            'mindspace/utils/makeTryCatch'
+                        ]
                     },
                     out: '<%= buildDir %>/assets/js/zza.js',
                     name: 'Zza',

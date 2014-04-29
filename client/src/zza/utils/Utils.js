@@ -7,7 +7,7 @@
 (function( define ) {
     'use strict';
 
-    define(['utils/supplant', 'zza/utils/defineProperty' ], function( supplant, defineProperty )
+    define(['mindspace/utils/supplant', 'zza/utils/defineProperty' ], function( supplant, defineProperty )
     {
 
         return ['$http', '$q', '$rootScope', '$timeout', '$log', 'config', Utils];

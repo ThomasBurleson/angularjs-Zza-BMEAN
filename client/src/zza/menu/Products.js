@@ -3,7 +3,7 @@
 
     define( [
 
-          'mindspace/utils/logger/ExternalLogger'
+          'mindspace/logger/ExternalLogger'
 
         , 'zza/menu/directives/ImageSourceDirective'
         , 'zza/menu/controllers/ProductController'

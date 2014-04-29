@@ -31,48 +31,39 @@
         , { breeze_meta  : "vendor/breeze/breeze.metadata-helper.js"               , size : "16463"  }
 
         , { require      : "vendor/requirejs/require.js"                           , size : "82718"  }
+
+        , { zza          : "./assets/js/zza.js"                                    , size : "32000"  }
     )
-    .notify( function(name, size, loaded, total) {
-        var percentDone;
+        .notify( function(name, size, loaded, total) {
+            var percentDone;
 
-        if (!(total != null))     return;
-        if (name === 'jquery')    $bar = $('.progress .bar');
+            if (!(total != null))     return;
+            if (name === 'jquery')    $bar = $('.progress .bar');
 
-        percentDone = Math.floor(loaded / total * 100);
-        $bar.width("" + percentDone + "%");
-    })
-    .ready("ALL", function()
-    {
-
-        // Development-mode uses RequireJS to load the Class definitions (on-demand)
-
-        require.config ({
-            appDir  : '',
-            baseUrl : './src',
-            paths   :
-            {
-                'utils' : 'mindspace/utils'
-            }
-        });
-
-        $bar.delay( 600 )
-            .promise()
-            .done( function() {
-                $( '#startup' )
-                    .fadeOut( 200 )
-                    .promise()
-                    .done( function()
-                    {
-                        require( [ "Zza" ], function( app )
+            percentDone = Math.floor(loaded / total * 100);
+            $bar && $bar.width("" + percentDone + "%");
+        })
+        .ready("ALL", function()
+        {
+            $bar.delay( 600 )
+                .promise()
+                .done( function() {
+                    $( '#startup' )
+                        .fadeOut( 200 )
+                        .promise()
+                        .done( function()
                         {
-                            // Application has bootstrapped and started...
+                            // All application code is concat/uglified in 1 file:  `zza.js`
+
+                            require( [ "Zza" ], function( app )
+                            {
+                                // Application has bootstrapped and started...
+                            });
+
+                            $( '#startup').remove();
+                            $bar = null;
                         });
-
-                        $( '#startup').remove();
-                        $bar = null;
-                    });
-            });
-
-    });
+                });
+        });
 
 }( window.head ));

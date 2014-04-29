@@ -3,7 +3,7 @@
 
     define([], function()
     {
-        return [ '$stateProvider', '$urlRouterProvider', RouteManager ];
+        return [ '$stateProvider', '$urlRouterProvider', '$locationProvider', RouteManager ];
     });
 
     // **********************************************************
@@ -14,7 +14,7 @@
      * Configures the UI-Router states and their associated URL routes and views
      * Also adds "state-change" reporting for debugging during development
      */
-    function RouteManager( $stateProvider, $urlRouterProvider )
+    function RouteManager( $stateProvider, $urlRouterProvider, $locationProvider )
     {
         $stateProvider
             .state('app',
@@ -121,6 +121,11 @@
                             }
                         });
 
+
+        // @see http://scotch.io/quick-tips/js/angular/pretty-urls-in-angularjs-removing-the-hashtag
+
+//        $locationProvider.html5Mode(true)
+//                         .hashPrefix('!');
 
         $urlRouterProvider
             .when( '/menu', '/menu/pizza'  ) // Switch to Pizza listing view
