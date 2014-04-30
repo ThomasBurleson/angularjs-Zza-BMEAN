@@ -47,6 +47,10 @@ module.exports = function(grunt) {
                     {
                         src: './requirejs/bootstrap_dev.js',
                         dest: '../assets/js/boot.js'
+                    },
+                    {
+                        src: './requirejs/requirejs.config_dev.js',
+                        dest: '../vendor/requirejs/require.config.js'
                     }
                 ]
             }
@@ -59,17 +63,13 @@ module.exports = function(grunt) {
          */
         requirejs: {
             compile: {
-
                 options: {
-
                     preserveLicenseComments: true,
                     optimize: "none"
                 }
             },
             compileMin: {
-
                 options: {
-
                     preserveLicenseComments: false,
                     optimize: "uglify"
                 }
@@ -101,14 +101,22 @@ module.exports = function(grunt) {
         name: 'Zza'
     };
 
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Initialize Configuration
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     grunt.util._.extend( taskConfig.requirejs.compile.options   , commonOptions );
     grunt.util._.extend( taskConfig.requirejs.compileMin.options, commonOptions );
 
     grunt.initConfig( taskConfig );
 
+
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Register Tasks
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     grunt.registerTask("dev", [
         'clean:src',
@@ -127,4 +135,7 @@ module.exports = function(grunt) {
         "requirejs:compileMin", // concatenate and minify all the Zza source AMDs
         'copy:prod_boot'        // copy the production boot.js file (which does NOT use require.config())
     ]);
+
+
+
 };
