@@ -27,7 +27,7 @@
                    , 'breeze.angular'
                    , 'ui.router'
                    , 'ui.bootstrap'
-                   , 'mindspace.logDecorator'
+                   , 'mindspace.logX'
 
                    , Application             // Zza-defined NG modules...
                    , Customers

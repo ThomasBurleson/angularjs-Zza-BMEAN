@@ -22,7 +22,7 @@
         , { require         : "vendor/requirejs/require.js"                                     , size : "82718"  }
         , { require_config  : "vendor/requirejs/require.config.js"                              , size : "500"    }
 
-        , { mindspace       : "vendor/angular-logDecorator/release/amd/angular-logDecorator.js" , size : "5388"   }
+        , { mindspace       : "vendor/angular-logX/release/amd/angular-logX.js"                 , size : "5388"   }
 
     )
     .notify( function(name, size, loaded, total)

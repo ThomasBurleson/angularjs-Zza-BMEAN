@@ -86,7 +86,7 @@ module.exports = function(grunt) {
         paths   :
         {
             // Configure path to `mindspace.utils` module/library [ contains multiple defines(...) ]
-            'mindspace.utils' : '../vendor/angular-logDecorator/release/amd/angular-logDecorator'
+            'mindspace.utils' : '../vendor/angular-logX/release/amd/angular-logX'
 
         },
         bundles: {

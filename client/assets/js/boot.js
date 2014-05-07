@@ -4,7 +4,7 @@
     var $bar = null;
 
     head.js(
-          { jquery          : "vendor/jquery/jquery.min.js"                                     , size : "83606"  }
+        { jquery          : "vendor/jquery/jquery.min.js"                                     , size : "83606"  }
 
         , { angular         : "vendor/angular/angular.js"                                       , size : "803501" }
         , { ngSanitize      : "vendor/angular-sanitize/angular-sanitize.min.js"                 , size : "4317"   }
@@ -20,8 +20,9 @@
         , { breeze_meta     : "vendor/breeze/breeze.metadata-helper.js"                         , size : "16463"  }
 
         , { require         : "vendor/requirejs/require.js"                                     , size : "82718"  }
-        , { zza             : "./assets/js/zza.js"                                              , size : "32000"  }
+        , { require_config  : "vendor/requirejs/require.config.js"                              , size : "500"    }
 
+        , { mindspace       : "vendor/angular-logX/release/amd/angular-logX.js"                 , size : "5388"   }
 
     )
     .notify( function(name, size, loaded, total)
@@ -36,8 +37,7 @@
     })
     .ready("ALL", function()
     {
-       pause().then( startZza)
-              .then( fadeOut );
+        pause().then( startZza).then( fadeOut );
 
     });
 
