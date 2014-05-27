@@ -50,7 +50,7 @@ module.exports = function(grunt) {
                     },
                     {
                         src: './requirejs/requirejs.config_dev.js',
-                        dest: '../vendor/requirejs/require.config.js'
+                        dest: '../assets/js/require.config.js'
                     }
                 ]
             }

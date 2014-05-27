@@ -1,6 +1,6 @@
 #Zza Breeze-MEAN
 
-The "Zza Breeze-MEAN" sample app is a single page application (SPA) built with BreezeJS, AngularJS, Node, and MongoDB 
+The "Zza Breeze-MEAN" sample app is a single page application (SPA) built with BreezeJS, AngularJS, Node, and MongoDB
 
 ![zza_home](https://cloud.githubusercontent.com/assets/210413/2725275/88509a0e-c5ab-11e3-84e6-bd12b7d91a7b.png)
 
@@ -11,9 +11,11 @@ This application is a fork of the excellent work by [Ward Bell](https://github.c
 ![zza_about](https://cloud.githubusercontent.com/assets/210413/2725443/fe161cf4-c5ac-11e3-95b1-d9ad9692cc82.png)
 
 
-Recent upgrades to the *upstream* source added an improved user experience, code-cleanup, and integrated the AngularJS UI-Router plugin: to provide robust nested-view management.  
+Recent upgrades to the *upstream* source added an improved user experience, code-cleanup, and integrated the AngularJS UI-Router plugin: to provide robust nested-view management.
 
-But many *enterprise* conventions were <u>not</u> introduced in order to keep the *student* sample focused upon BreezeJS integration. This **downstream** fork enhances the code and architecture with features and patterns demanded by larger applications and team-based development. Those features and patterns manifest in other technology/platform solutions: Java, AS3, etc... so why it seems *obvious* to use the same within AngularJS SPA architectures:
+The **upstream** repository was published as part of a BreezeJS training course. But many *enterprise* conventions were <u>not</u> introduced in order to both keep the *student* sample less complex and allow maintain focus on BreezeJS ORM integration.
+
+This **downstream** fork enhances the code and architecture with features and patterns demanded by larger applications and team-based development. Those features and patterns are manifested in other technology/platform solutions: Java, AS3, etc... so it seems *obvious* to use the similar ones within AngularJS SPA architectures:
 
 1. Use of RequireJS to provide AMD and Class depedency management. <br>See [Dependency Injection Using RequireJS and AngularJS](http://solutionoptimist.com/2013/09/30/requirejs-angularjs-dependency-injection/) for detailed explanations.
 2.  Organization of classes/packages by **feature**
@@ -38,7 +40,7 @@ Shown below is a snapshot of the Zza application and its **console** view:
 
 A live version has been deployed to Heroku:  [Zza Live](http://zza-breeze-mean.herokuapp.com/)!
 
-This version will demonstrate the UI-Router and AngularJS transitions/animations within the screens, the live logging (Chrome Console), deep linking, routing/navigation, and more... 
+This version will demonstrate the UI-Router and AngularJS transitions/animations within the screens, the live logging (Chrome Console), deep linking, routing/navigation, and more...
 
 > The Heroku deployment is published on a **free**, sleep-after-1-hour virtual image. This means that the **1st-time** loading of the application may require 3-5 seconds to startup. Subsequent database queries and loads should be much faster. So please wait during the initial startup...
 
@@ -56,9 +58,9 @@ This repository represents a full MEAN stack; where both the client and the serv
 
 ### Extract the database
 
-Extract the Zza application's MongoDB database in *zza-mongo-database.zip* to your MongoDB data directory.
+Extract the Zza application's MongoDB database in *zza-mongo-database.zip* to your MongoDB data directory. 
 
->The default location per MongoDB installation instructions is *C:\data*. Your location may be different.
+>The default location per MongoDB installation instructions should be `<projectDirectory>/database/zza/*`.
 
 You only have to install this database once.
 
