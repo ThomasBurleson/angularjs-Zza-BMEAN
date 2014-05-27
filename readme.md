@@ -56,9 +56,9 @@ This repository represents a full MEAN stack; where both the client and the serv
 
 ### Extract the database
 
-Extract the Zza application's MongoDB database in *zza-mongo-database.zip* to your MongoDB data directory.
+Extract the Zza application's MongoDB database in *zza-mongo-database.zip* to your MongoDB data directory. 
 
->The default location per MongoDB installation instructions is *C:\data*. Your location may be different.
+>The default location per MongoDB installation instructions should be `<projectDirectory>/database/zza/*`.
 
 You only have to install this database once.
 
